@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+	<html class="sl-root decks export offline loaded">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>Authorization &amp; Authentication</title>
+
+
+		<link rel="stylesheet" type="text/css" href="lib/offline-v2.css">
+
+
+
+	</head>
+	<body class="reveal-viewport theme-font-montserrat theme-color-silver-blue">
+		<div class="reveal">
+			<div class="slides">
+				<section data-id="5d872c41f6c2a92fbbeebca692b3889b" data-background-video-muted="true" data-background-video-loop="true" data-background-video="bchildress-authentication-authorization/d89428b03982cc8149a9855e33477b4c.mp4" data-background-video-thumb="https://s3.amazonaws.com/media-p.slid.es/videos/906421/B78-Muu4/closingcashbox_thumb_00001.jpg" data-background-media-id="5130448" data-background-opacity="0.53"><div class="sl-block" data-block-type="text" style="width: 960px; left: 0px; top: 140px; height: auto;" data-block-id="a6ed15c194bc2ea3354ebebf34da127a"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" data-animation-type="fade-in" style="transition-duration: 0.6s; transition-delay: 0.6s; z-index: 10;">
+<p><strong><span style="font-size:1.8em">Denied! </span></strong></p>
+
+<p><strong><span style="font-size:1.8em">Securing Your Application with Better User Authorization</span></strong></p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 387px; left: 545px; top: 495px; height: auto;" data-block-id="9cadebfcd1dda23ad51e28a3a63d0148"><div class="sl-block-content fragment" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 12; font-size: 65%;" data-fragment-index="0">
+<h1>brian childress</h1>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 230px; left: 693px; top: 570px; height: auto;" data-block-id="5159d8a1bc488e006d41aa6697adff7b"><div class="sl-block-content fragment" data-placeholder-tag="h2" data-placeholder-text="Subtitle" style="z-index: 13; font-size: 65%;" data-fragment-index="0">
+<h2>Capital One</h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 452px; left: 480px; top: 631px;" data-block-id="dbb02d1681d82b5c925404a30db42a69"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14;" data-fragment-index="0">
+<p>brian.childress@capitalone.com</p>
+</div></div></section><section data-background-opacity="0.4" data-id="40027904ca0b64f503780d42a9dd61a4" data-background-image="bchildress-authentication-authorization/8d62163d99ca0bb6cb1b78a1e74f3ee7.jpg">
+
+
+<div class="sl-block" data-block-type="text" style="width: 387px; left: 287px; top: 70px; height: auto;" data-block-id="f11e0a3405af56965024e5bb082409b1"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 13; font-size: 65%;">
+<h1>overview</h1>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 359px; left: 80px; top: 160px; height: auto;" data-block-id="b3d33cada1b70fa4d52b7009e8d7b195"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 14; font-size: 65%;">
+<ul>
+	<li>
+	<h1>what is auth?</h1>
+	</li>
+</ul>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 353px; left: 80px; top: 269px; height: auto;" data-block-id="2e5b0bd3c81b90dba9e406fa117f3b02"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 15; font-size: 65%;">
+<ul>
+	<li>
+	<h1>security risks</h1>
+	</li>
+</ul>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 377px; left: 69px; top: 373px; height: auto;" data-block-id="d4438d94e4ac1d360af91e99d2016972"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 17; font-size: 65%;">
+<ul>
+	<li>
+	<h1>ways to auth</h1>
+	</li>
+</ul>
+</div></div></section><section data-id="e7d6e454d5ea031a9c9e1df38eb6657b" data-background-image="bchildress-authentication-authorization/8d62163d99ca0bb6cb1b78a1e74f3ee7.jpg" data-background-opacity="0.4"><div class="sl-block" data-block-type="text" style="width: 960px; left: 0px; top: 315px; height: auto;" data-block-id="c1e170a7829cc051b5e01ef30ff5373d"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 10;">
+<h1><span style="font-size:0.7em">authentication &amp; authorization</span></h1>
+</div></div></section><section data-id="6f64eeea4de495147060eece557491b3" data-background-image="bchildress-authentication-authorization/8d62163d99ca0bb6cb1b78a1e74f3ee7.jpg" data-background-opacity="0.2"><div class="sl-block" data-block-type="text" style="width: 395px; left: 48px; top: 105px; height: auto;" data-block-id="c558db260f8dbe7ba81d939ad64dc8ea"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 11;">
+<h2><span style="font-size:0.9em">authentication</span></h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 384px; left: 48px; top: 258px; height: auto;" data-block-id="e63d229e12b1f3314d9b882db8973339"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin urna odio, aliquam vulputate faucibus id, elementum lobortis felis. Mauris urna dolor, placerat ac sagittis quis." style="text-align: left; z-index: 12;" data-fragment-index="0">
+<p><span style="font-size:1.2em"><span style="color:rgb(34, 34, 34)">... is the process of verifying that "you are who you say you are"... </span></span></p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 384px; left: 528px; top: 105px; height: auto;" data-block-id="fd6dcfcf8d02490ab57193adbb12328e"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 13;">
+<h2><span style="font-size:0.9em">authorization</span></h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 384px; left: 528px; top: 258px; height: auto;" data-block-id="78678fca631de186514b204ed100269f"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin urna odio, aliquam vulputate faucibus id, elementum lobortis felis. Mauris urna dolor, placerat ac sagittis quis." style="text-align: left; z-index: 14;" data-fragment-index="1">
+<p><span style="font-size:1.2em"><span style="color:rgb(34, 34, 34)">... is the process of verifying that "you are permitted to do what you are trying to do"...</span></span></p>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="884a081051e4d19260dce1cac3d28261" style="height: auto; min-width: 30px; min-height: 30px; width: 327px; left: 620px; top: 652px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 15;">
+<p><span style="font-size:0.5em"><a href="https://en.wikipedia.org/wiki/Authentication" target="_blank">https://en.wikipedia.org/wiki/Authentication</a></span></p>
+</div></div>
+</section><section data-id="f3d61b9f729d36586ffcb51abad38372" data-background-image="bchildress-authentication-authorization/8d62163d99ca0bb6cb1b78a1e74f3ee7.jpg" data-background-opacity="0.2" data-background-position="50% 50%" data-background-size="cover"><div class="sl-block" data-block-type="text" style="width: 592px; left: 0px; top: 0px; height: auto;" data-block-id="413fec2d005096ae3dac2f943a34e327"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 10;">
+<h2>authentication flow</h2>
+</div></div>
+
+
+
+<div class="sl-block" data-block-type="shape" data-block-id="6064cd61c5afd4002b851a32f537dcbc" style="min-width: 4px; min-height: 4px; width: 164px; height: 148px; left: 693px; top: 281px;"><div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 11;" data-shape-stroke-color="#444444" data-shape-stroke-width="3"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 164 148"><defs><clippath id="shape-mask-1-1534280709579"><rect width="164" height="148"></rect></clippath></defs><rect width="164" height="148" clip-path="url(#shape-mask-1-1534280709579)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#444444" stroke-width="6"></rect></svg></div></div>
+
+
+<div class="sl-block" data-block-type="text" data-block-id="a408e8d88c11f09189a8c05b9c2686f7" style="height: auto; min-width: 30px; min-height: 30px; width: 88px; left: 80px; top: 70px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+<p>local</p>
+</div></div>
+
+
+
+
+
+<div class="sl-block" data-block-type="image" data-block-id="0fd04eb61c27bd6173733c62545e1e99" style="min-width: 4px; min-height: 4px; width: 328px; height: 319px; left: 58px; top: 210px;"><div class="sl-block-content" style="z-index: 14;"><img style="" data-natural-width="680" data-natural-height="662" data-lazy-loaded="" data-src="bchildress-authentication-authorization/995ac7dbf5d60b27d4bc3336544718e5.gif"></div></div>
+<div class="sl-block" data-block-type="text" data-block-id="6c90b738dd7211362d07092c6cf1b18e" style="height: auto; min-width: 30px; min-height: 30px; width: 118px; left: 716px; top: 339px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 15;">
+<p>server</p>
+</div></div>
+<div class="sl-block" data-block-type="line" style="width: auto; height: auto; left: 394px; top: 339px;" data-block-id="6402a5f7d353dbe01d0427554cfcf9e5"><div class="sl-block-style" style="z-index: 16;"><div class="sl-block-content fragment fade-right" data-line-x1="-1" data-line-y1="201" data-line-x2="286" data-line-y2="201" data-line-color="#000000" data-line-start-type="none" data-line-end-type="line-arrow" style="z-index: 16;" data-fragment-index="0" data-line-width="3px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="287" height="1" viewbox="-1 201 287 1"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="-0.5" y1="201.5" x2="284.5" y2="201.5"></line><line stroke="#000000" stroke-width="3" x1="-0.5" y1="201.5" x2="284.5" y2="201.5"></line><path style="fill: rgba(0,0,0,0);" stroke="#000000" stroke-width="3" transform="translate(284,201) rotate(90)" d="M 6.75 6.75 L 0 0 L -6.75 6.75"></path></svg></div></div></div>
+<div class="sl-block" data-block-type="line" style="width: auto; height: auto; left: 395px; top: 388px;" data-block-id="c397fcba8ae976e0ccc8ee1510487e0c"><div class="sl-block-style" style="z-index: 17;"><div class="sl-block-content fragment fade-left" data-line-x1="286" data-line-y1="250" data-line-x2="-1" data-line-y2="250" data-line-color="#000000" data-line-start-type="none" data-line-end-type="line-arrow" style="z-index: 17;" data-fragment-index="1" data-line-width="3px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="287" height="1" viewbox="-1 250 287 1"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="286.5" y1="250.5" x2="1.5" y2="250.5"></line><line stroke="#000000" stroke-width="3" x1="286.5" y1="250.5" x2="1.5" y2="250.5"></line><path style="fill: rgba(0,0,0,0);" stroke="#000000" stroke-width="3" transform="translate(1,250) rotate(270)" d="M 6.75 6.75 L 0 0 L -6.75 6.75"></path></svg></div></div></div></section><section data-id="fee000151b917ebffa92086dc9a2c315" data-background-image="bchildress-authentication-authorization/8d62163d99ca0bb6cb1b78a1e74f3ee7.jpg" data-background-opacity="0.2"><div class="sl-block" data-block-type="text" style="width: 587px; left: 2px; top: 0px; height: auto;" data-block-id="2b86914dbb9d1830fb5ea07147d720fb"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 11;">
+<h2>authentication flow</h2>
+</div></div>
+
+
+
+
+
+
+
+
+<div class="sl-block" data-block-type="line" style="width: auto; height: auto; left: 304px; top: 326px;" data-block-id="8ed46027b0b8a5b5009595f637709c91"><div class="sl-block-style" style="z-index: 13;"><div class="sl-block-content fragment fade-right" data-line-x1="-81" data-line-y1="209" data-line-x2="64" data-line-y2="333" data-line-color="#000000" data-line-start-type="none" data-line-end-type="line-arrow" style="z-index: 13;" data-fragment-index="0" data-line-width="3px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="145" height="124" viewbox="-81 209 145 124"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="-80.5" y1="209.5" x2="62.5" y2="332.5"></line><line stroke="#000000" stroke-width="3" x1="-80.5" y1="209.5" x2="62.5" y2="332.5"></line><path style="fill: rgba(0,0,0,0);" stroke="#000000" stroke-width="3" transform="translate(62,332) rotate(130.536)" d="M 6.75 6.75 L 0 0 L -6.75 6.75"></path></svg></div></div></div>
+<div class="sl-block" data-block-type="shape" style="width: 164px; height: 148px; left: 723px; top: 256px;" data-block-id="6b595cac9d28b714b80cad32f4c0194d"><div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 12;" data-shape-stroke-color="#444444" data-shape-stroke-width="3"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 164 148"><defs><clippath id="shape-mask-2-1534280709788"><rect width="164" height="148"></rect></clippath></defs><rect width="164" height="148" clip-path="url(#shape-mask-2-1534280709788)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#444444" stroke-width="6"></rect></svg></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 147px; left: 80px; top: 70px;" data-block-id="ec4c32f204bec7002fc58d0902bd6775"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14;">
+<p>3rd party</p>
+</div></div>
+<div class="sl-block" data-block-type="line" style="width: auto; height: auto; left: 512px; top: 326px;" data-block-id="db0c8c53234d3822dc93183fe156444a"><div class="sl-block-content fragment fade-left" data-line-x1="-172" data-line-y1="302" data-line-x2="20" data-line-y2="178" data-line-color="#000000" data-line-start-type="none" data-line-end-type="line-arrow" style="z-index: 16;" data-fragment-index="1" data-line-width="3px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="192" height="124" viewbox="-172 178 192 124"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="-171.5" y1="302.5" x2="18.5" y2="179.5"></line><line stroke="#000000" stroke-width="3" x1="-171.5" y1="302.5" x2="18.5" y2="179.5"></line><path style="fill: rgba(0,0,0,0);" stroke="#000000" stroke-width="3" transform="translate(18,179) rotate(57.144)" d="M 6.75 6.75 L 0 0 L -6.75 6.75"></path></svg></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 147px; left: 732px; top: 306px;" data-block-id="9781af7270c519c7666db7e6c1877489"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 15;">
+<p>server</p>
+</div></div>
+
+<div class="sl-block" data-block-type="shape" style="width: 164px; height: 148px; left: 398px; top: 464px;" data-block-id="2cf8d2904eaa23cfafb17b9f9513d217"><div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 18;" data-shape-stroke-color="#444444" data-shape-stroke-width="3"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 164 148"><defs><clippath id="shape-mask-3-1534280709806"><rect width="164" height="148"></rect></clippath></defs><rect width="164" height="148" clip-path="url(#shape-mask-3-1534280709806)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#444444" stroke-width="6"></rect></svg></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 147px; left: 407px; top: 514px;" data-block-id="bf49addf1bfff0bc2ac0596c40b20dc9"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 19;">
+<p>3rd party</p>
+</div></div>
+<div class="sl-block" data-block-type="line" style="width: auto; height: auto; left: 304px; top: 306px;" data-block-id="0f0a72471d4fa63479b4972848e85db3"><div class="sl-block-content fragment fade-left" data-line-x1="34" data-line-y1="216" data-line-x2="-366" data-line-y2="216" data-line-color="#000000" data-line-start-type="none" data-line-end-type="line-arrow" style="z-index: 20;" data-fragment-index="2" data-line-width="3px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="400" height="1" viewbox="-366 216 400 1"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="34.5" y1="216.5" x2="-363.5" y2="216.5"></line><line stroke="#000000" stroke-width="3" x1="34.5" y1="216.5" x2="-363.5" y2="216.5"></line><path style="fill: rgba(0,0,0,0);" stroke="#000000" stroke-width="3" transform="translate(-364,216) rotate(270)" d="M 6.75 6.75 L 0 0 L -6.75 6.75"></path></svg></div></div>
+<div class="sl-block" data-block-type="image" data-block-id="8f8efce28b433601c3ab8bfca03bed56" style="min-width: 4px; min-height: 4px; width: 278px; height: 67px; left: 2px; top: 280px;"><div class="sl-block-content" style="z-index: 21;"><img data-natural-width="382" data-natural-height="92" style="" data-lazy-loaded="" data-src="bchildress-authentication-authorization/a63e4eeff4b7ed389429cdcf4965a7ae.png"></div></div></section><section data-id="9c65f10ba9357411743f2d618e1d6c61" data-background-image="bchildress-authentication-authorization/8d62163d99ca0bb6cb1b78a1e74f3ee7.jpg" data-background-opacity="0.2"><div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 140px; height: auto;" data-block-id="1d6a1056935bd6526c0a1691981cd7a8">
+    <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 11;">
+<h2>{ JSON Web Token }</h2>
+</div>
+</div>
+<div class="sl-block" data-block-type="text" style="width: 806px; left: 61px; top: 257px; height: auto;" data-block-id="f4459baf6d2043d9cd527ec67ab2a4d9">
+    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+<blockquote>
+<p><span style="color:#696969"><span style="text-align:start">JSON Web Token (JWT) is an open standard (</span> </span> <a href="https://tools.ietf.org/html/rfc7519" target="_blank"> <span style="color:#696969">RFC 7519</span> </a> <span style="color:#696969"> <span style="text-align:start">) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. </span> </span></p>
+</blockquote>
+</div>
+</div>
+<div class="sl-block" data-block-type="text" data-block-id="942f476f6c137bb8bb88b0604a1da956" style="height: auto; min-width: 30px; min-height: 30px; width: 175px; left: 708px; top: 630px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+<p><span style="font-size:0.7em"><a href="https://jwt.io/" target="_blank">https://jwt.io/</a></span></p>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="ef75884470bca86bc04f912f8d834223" style="height: auto; min-width: 30px; min-height: 30px; width: 121px; left: 420px; top: 214px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14;">
+<p>[ jot ]</p>
+</div></div></section><section data-background-image="bchildress-authentication-authorization/8d62163d99ca0bb6cb1b78a1e74f3ee7.jpg" data-background-opacity="0.2" data-id="cc86b2bb798b9ceeeb617f15a1a518dd"><div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 140px; height: auto;" data-block-id="765a3af206dc30f6041dc9eaf120559e">
+    <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 10;">
+<h2>{ JSON Web Token }</h2>
+</div>
+</div>
+<div class="sl-block" data-block-type="text" style="width: 806px; left: 61px; top: 257px; height: auto;" data-block-id="2d47460402f6f637fd556ac4e310c697">
+    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<blockquote>
+<p><span style="color:#696969"><span style="text-align:start">JSON Web Token (JWT) is an open standard (</span> </span> <a href="https://tools.ietf.org/html/rfc7519" target="_blank"> <span style="color:#696969">RFC 7519</span> </a> <span style="color:#696969"> <span style="text-align:start">) that defines a <strong>compact and self-contained</strong> way for securely transmitting information between parties as a JSON object. </span> </span></p>
+</blockquote>
+</div>
+</div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 175px; left: 708px; top: 630px;" data-block-id="bb930cc14b0b6dba4374a091d3aca359"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+<p><span style="font-size:0.7em"><a href="https://jwt.io/" target="_blank">https://jwt.io/</a></span></p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 121px; left: 420px; top: 214px;" data-block-id="1e03e0ffe6888e9f94c433aad3bc2ed1"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+<p>[ jot ]</p>
+</div></div></section><section data-id="96e8eecc489017ca593677a2210860a9" data-background-image="bchildress-authentication-authorization/8d62163d99ca0bb6cb1b78a1e74f3ee7.jpg" data-background-opacity="0.2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="sl-block" data-block-type="line" style="width: auto; height: auto; left: 201px; top: 74px;" data-block-id="7c1e4cf5efb40b7efd41e801922e9c87"><div class="sl-block-style" style="z-index: 12;"><div class="sl-block-content fragment fade-right" data-line-x1="-200" data-line-y1="-125" data-line-x2="-27" data-line-y2="67" data-line-color="#000000" data-line-start-type="line-arrow" data-line-end-type="line-arrow" style="z-index: 12;" data-fragment-index="0"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="173" height="192" viewbox="-200 -125 173 192"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="-199" y1="-124" x2="-28" y2="66"></line><line stroke="#000000" stroke-width="2" x1="-199" y1="-124" x2="-28" y2="66"></line><path style="fill: rgba(0,0,0,0);" stroke="#000000" stroke-width="2" transform="translate(-199,-124) rotate(137.98)" d="M -6 -6 L 0 0 L 6 -6"></path><path style="fill: rgba(0,0,0,0);" stroke="#000000" stroke-width="2" transform="translate(-28,66) rotate(137.98)" d="M 6 6 L 0 0 L -6 6"></path></svg></div></div></div>
+<div class="sl-block" data-block-type="line" style="width: auto; height: auto; left: 523px; top: 74px;" data-block-id="d1250a1979f29920ef365636de4022bc"><div class="sl-block-style" style="z-index: 14;"><div class="sl-block-content fragment fade-left" data-line-x1="341" data-line-y1="436" data-line-x2="89" data-line-y2="628" data-line-color="#000000" data-line-start-type="line-arrow" data-line-end-type="line-arrow" style="z-index: 14;" data-fragment-index="3"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="252" height="192" viewbox="89 436 252 192"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="339" y1="437" x2="91" y2="627"></line><line stroke="#000000" stroke-width="2" x1="339" y1="437" x2="91" y2="627"></line><path style="fill: rgba(0,0,0,0);" stroke="#000000" stroke-width="2" transform="translate(339,437) rotate(232.696)" d="M -6 -6 L 0 0 L 6 -6"></path><path style="fill: rgba(0,0,0,0);" stroke="#000000" stroke-width="2" transform="translate(91,627) rotate(232.696)" d="M 6 6 L 0 0 L -6 6"></path></svg></div></div></div>
+<div class="sl-block" data-block-type="line" style="width: auto; height: auto; left: 115px; top: 401px;" data-block-id="894f35c1f09e15dd73e5388844c35505"><div class="sl-block-style" style="z-index: 13;"><div class="sl-block-content fragment fade-right" data-line-x1="108" data-line-y1="133" data-line-x2="367" data-line-y2="-45" data-line-color="#000000" data-line-start-type="line-arrow" data-line-end-type="line-arrow" style="z-index: 13;" data-fragment-index="0"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="259" height="178" viewbox="108 -45 259 178"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="110" y1="132" x2="365" y2="-44"></line><line stroke="#000000" stroke-width="2" x1="110" y1="132" x2="365" y2="-44"></line><path style="fill: rgba(0,0,0,0);" stroke="#000000" stroke-width="2" transform="translate(110,132) rotate(55.501)" d="M -6 -6 L 0 0 L 6 -6"></path><path style="fill: rgba(0,0,0,0);" stroke="#000000" stroke-width="2" transform="translate(365,-44) rotate(55.501)" d="M 6 6 L 0 0 L -6 6"></path></svg></div></div></div>
+<div class="sl-block" data-block-type="line" style="width: auto; height: auto; left: 523px; top: 401px;" data-block-id="2337627cd544c4c4b0010ce9f9dab004"><div class="sl-block-style" style="z-index: 15;"><div class="sl-block-content fragment fade-left" data-line-x1="336" data-line-y1="153" data-line-x2="118" data-line-y2="-42" data-line-color="#000000" data-line-start-type="line-arrow" data-line-end-type="line-arrow" style="z-index: 15;" data-fragment-index="3"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="218" height="195" viewbox="118 -42 218 195"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="335" y1="152" x2="119" y2="-41"></line><line stroke="#000000" stroke-width="2" x1="335" y1="152" x2="119" y2="-41"></line><path style="fill: rgba(0,0,0,0);" stroke="#000000" stroke-width="2" transform="translate(335,152) rotate(-48.188)" d="M -6 -6 L 0 0 L 6 -6"></path><path style="fill: rgba(0,0,0,0);" stroke="#000000" stroke-width="2" transform="translate(119,-41) rotate(-48.188)" d="M 6 6 L 0 0 L -6 6"></path></svg></div></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 118px; left: 8px; top: 476px;" data-block-id="1a384f865a17659eac39a8708672c572"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 16; background-color: rgba(0, 0, 0, 0);">
+<p>mobile </p>
+</div></div>
+
+<div class="sl-block" data-block-type="text" data-block-id="425107dc4c14f30e3fd7509b56df7383" style="height: auto; min-width: 30px; min-height: 30px; width: 201px; left: 0px; top: 12px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 17; border-style: solid; border-width: 3px; padding: 20px;">
+<p>&lt;browser&gt;<br>
+(eg. SPA)</p>
+</div></div>
+<div class="sl-block" data-block-type="shape" data-block-id="8857cb49157c53204c7f718b767e3bd9" style="min-width: 4px; min-height: 4px; width: 74px; height: 148px; left: 20px; top: 527px;"><div class="sl-block-content" data-shape-type="symbol-iphone" data-shape-fill-color="#000000" data-shape-stretch="true" style="z-index: 11;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 24 32"><g class="shape-element" fill="#000000"><path d="M16 0h-8c-4.418 0-8 3.582-8 8v16c0 4.418 3.582 8 8 8h8c4.418 0 8-3.582 8-8v-16c0-4.418-3.582-8-8-8zM12 30.062c-1.139 0-2.062-0.922-2.062-2.062s0.924-2.062 2.062-2.062 2.062 0.922 2.062 2.062-0.923 2.062-2.062 2.062zM20 24h-16v-16c0-2.203 1.795-4 4-4h8c2.203 0 4 1.797 4 4v16z"></path></g></svg></div></div>
+<div class="sl-block" data-block-type="text" data-block-id="49230c60a643e523c2c49371f813ff40" style="height: auto; min-width: 30px; min-height: 30px; width: 177px; left: 775px; top: 12px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 18; padding: 20px; border-style: solid; border-width: 3px;">
+<p>Location Server</p>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="1c05a628329ad6daec54145b5d8c0224" style="height: auto; min-width: 30px; min-height: 30px; width: 211px; left: 741px; top: 534px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 19; border-style: solid; border-width: 3px; padding: 20px;">
+<p><span style="font-size:0.9em">Image Microservice</span></p>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="96222fcf16c9eb7391d42130f7e42b43" style="height: auto; min-width: 30px; min-height: 30px; width: 126px; left: 257px; top: 121px;"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 20;" data-fragment-index="1">
+<p>{JWT}</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 126px; left: 240px; top: 488px;" data-block-id="f7d500476e19abd4d0311f651056670d"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 21;" data-fragment-index="1">
+<p>{JWT}</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 149px; left: 374px; top: 266px;" data-block-id="2b022ea6fc6dd17ad81d4c519adbf107"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 22; border-style: solid; border-width: 3px; padding: 45px;">
+<p>API</p>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="3142696238afbdfa5ca6a82bca56a39f" style="height: auto; min-width: 30px; min-height: 30px; width: 366px; left: 8px; top: 247px;"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 24;" data-fragment-index="2">
+<p>{JWT}</p>
+
+<p style="text-align:left"><em>Authorization: Bearer eyJhbGciOiJIUzI1N9.3ODkwIiwibmFtZSI6.u6aVTx2CHvo</em></p>
+</div></div></section><section data-id="60243ca14b7d14c30979e5435c5e2a9a" data-background-image="bchildress-authentication-authorization/8d62163d99ca0bb6cb1b78a1e74f3ee7.jpg" data-background-opacity="0.2">
+<div class="sl-block" data-block-type="text" style="width: 944px; left: 8px; top: 182px; height: auto;" data-block-id="290f76199b92d426d29cbf026f228a83"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<p><span style="font-size:1.2em"><span style="color:#FF0000">eyJhbGciOiJIUzI1N9</span>.<span style="color:#800080">3ODkwIiwibmFtZSI6</span>.<span style="color:#0000FF">u6aVTx2CHvo</span></span></p>
+</div></div>
+<div class="sl-block" data-block-type="shape" data-block-id="4f294ad5f1ec896f0199ad88ad970473" style="min-width: 4px; min-height: 4px; width: 329px; height: 86px; left: 21px; top: 160px;"><div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 12;" data-shape-stroke-color="#ff0000" data-shape-stroke-width="3"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 329 86"><defs><clippath id="shape-mask-4-1534280710449"><rect width="329" height="86"></rect></clippath></defs><rect width="329" height="86" clip-path="url(#shape-mask-4-1534280710449)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#ff0000" stroke-width="6"></rect></svg></div></div>
+<div class="sl-block" data-block-type="text" data-block-id="2667bfe37fbe16c9fd839f85fc586ed2" style="height: auto; min-width: 30px; min-height: 30px; width: 160px; left: 400px; top: 401px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+<p><span style="font-size:1.4em">Header</span></p>
+</div></div>
+<div class="sl-block" data-block-type="line" data-block-id="7d99150594b8a35020f75302ed36f909" style="width: auto; height: auto; min-width: 1px; min-height: 1px; left: 186px; top: 254px;"><div class="sl-block-content" data-line-x1="100" data-line-y1="221" data-line-x2="-194" data-line-y2="74" data-line-color="#000000" data-line-start-type="none" data-line-end-type="line-arrow" style="z-index: 14;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="294" height="147" viewbox="-194 74 294 147"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="100" y1="221" x2="-192" y2="75"></line><line stroke="#000000" stroke-width="2" x1="100" y1="221" x2="-192" y2="75"></line><path style="fill: rgba(0,0,0,0);" stroke="#000000" stroke-width="2" transform="translate(-192,75) rotate(-63.435)" d="M 6 6 L 0 0 L -6 6"></path></svg></div></div>
+<div class="sl-block" data-block-type="text" data-block-id="50a03c1f6e21dfd33386c49ced43a4cc" style="height: auto; min-width: 30px; min-height: 30px; width: 240px; left: 618px; top: 332px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 15; background-color: rgb(34, 34, 34); color: rgb(255, 255, 255); padding: 10px;">
+<p style="text-align:left"><span style="text-align:left">{</span><br>
+<span style="text-align:left">  "alg": "HS256",</span><br>
+<span style="text-align:left">  "typ": "JWT"</span><br>
+<span style="text-align:left">}</span></p>
+</div></div></section><section data-id="5c6bc98c4bc11756aec5e2f547413f68" data-background-image="bchildress-authentication-authorization/8d62163d99ca0bb6cb1b78a1e74f3ee7.jpg" data-background-opacity="0.2">
+<div class="sl-block" data-block-type="text" style="width: 944px; left: 8px; top: 182px; height: auto;" data-block-id="10a5fdcc929da30fb70db12fb5b31f94"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<p><span style="font-size:1.2em"><span style="color:#FF0000">eyJhbGciOiJIUzI1N9</span>.<span style="color:#800080">3ODkwIiwibmFtZSI6</span>.<span style="color:#0000FF">u6aVTx2CHvo</span></span></p>
+</div></div>
+<div class="sl-block" data-block-type="shape" style="width: 340px; height: 86px; left: 356px; top: 162px;" data-block-id="7ee3ed2eefdefea7d8a9153b52abd849"><div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 12;" data-shape-stroke-color="#ff0000" data-shape-stroke-width="3"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 340 86"><defs><clippath id="shape-mask-5-1534280710632"><rect width="340" height="86"></rect></clippath></defs><rect width="340" height="86" clip-path="url(#shape-mask-5-1534280710632)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#ff0000" stroke-width="6"></rect></svg></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 160px; left: 400px; top: 401px;" data-block-id="13b2704b96d999338fe4036f8f527e50"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+<p><span style="font-size:1.4em">Payload</span></p>
+</div></div>
+<div class="sl-block" data-block-type="line" style="width: auto; height: auto; left: 480px; top: 258px;" data-block-id="f4767625bcba3862ec7c4d01d9e3a49a"><div class="sl-block-content" data-line-x1="100" data-line-y1="221" data-line-x2="145" data-line-y2="78" data-line-color="#000000" data-line-start-type="none" data-line-end-type="line-arrow" style="z-index: 14;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="45" height="143" viewbox="100 78 45 143"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="100" y1="221" x2="144" y2="80"></line><line stroke="#000000" stroke-width="2" x1="100" y1="221" x2="144" y2="80"></line><path style="fill: rgba(0,0,0,0);" stroke="#000000" stroke-width="2" transform="translate(144,80) rotate(17.468)" d="M 6 6 L 0 0 L -6 6"></path></svg></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 369px; left: 583px; top: 266px;" data-block-id="1854dbda6a88abf39c06bed18174dd1c"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 16; background-color: rgb(34, 34, 34); color: rgb(255, 255, 255); padding: 10px;">
+<p style="text-align:left"><span style="color:rgb(255, 255, 255)"><span style="font-size:0.7em">{<br>
+  "sub": "1234567890",<br>
+  "name": "Jim Halpert",<br>
+  "email": "jim@email.com",<br>
+  "iat": 1516239022,</span></span></p>
+
+<p style="text-align:left"><span style="color:rgb(255, 255, 255)"><span style="font-size:0.7em">  "exp": 1782348521</span></span></p>
+
+<p style="text-align:left"><span style="color:rgb(255, 255, 255)"><span style="font-size:0.7em">}</span></span></p>
+</div></div></section><section data-id="3fb6495ace8c0e293b661aa48fdf2b72" data-background-image="bchildress-authentication-authorization/8d62163d99ca0bb6cb1b78a1e74f3ee7.jpg" data-background-opacity="0.2">
+<div class="sl-block" data-block-type="text" style="width: 944px; left: 8px; top: 182px; height: auto;" data-block-id="9526e672230663a7d92b066f2e46099b"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<p><span style="font-size:1.2em"><span style="color:#FF0000">eyJhbGciOiJIUzI1N9</span>.<span style="color:#800080">3ODkwIiwibmFtZSI6</span>.<span style="color:#0000FF">u6aVTx2CHvo</span></span></p>
+</div></div>
+<div class="sl-block" data-block-type="shape" style="width: 238px; height: 86px; left: 701px; top: 162px;" data-block-id="fac0887ca20fa08103162c9c9ba2ff77"><div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 12;" data-shape-stroke-color="#ff0000" data-shape-stroke-width="3"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 238 86"><defs><clippath id="shape-mask-6-1534280711149"><rect width="238" height="86"></rect></clippath></defs><rect width="238" height="86" clip-path="url(#shape-mask-6-1534280711149)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#ff0000" stroke-width="6"></rect></svg></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 214px; left: 373px; top: 401px;" data-block-id="93c9800fe6da50ea0bd13c7fa5e7ca2d"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+<p><span style="font-size:1.4em">Signature</span></p>
+</div></div>
+<div class="sl-block" data-block-type="line" style="width: auto; height: auto; left: 480px; top: 255px;" data-block-id="ff301c6a9141e94572b08d615a482c9f"><div class="sl-block-content" data-line-x1="100" data-line-y1="221" data-line-x2="442" data-line-y2="75" data-line-color="#000000" data-line-start-type="none" data-line-end-type="line-arrow" style="z-index: 14;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="342" height="146" viewbox="100 75 342 146"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="100" y1="221" x2="440" y2="76"></line><line stroke="#000000" stroke-width="2" x1="100" y1="221" x2="440" y2="76"></line><path style="fill: rgba(0,0,0,0);" stroke="#000000" stroke-width="2" transform="translate(440,76) rotate(66.882)" d="M 6 6 L 0 0 L -6 6"></path></svg></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 490px;" data-block-id="686fc023732fb5caaceef6c2f120e02d"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 15; background-color: rgb(34, 34, 34); color: rgb(255, 255, 255); padding: 10px;">
+<pre style="color:rgb(0, 185, 241)"><span style="font-size:1.0em"><span style="color:#FFFFFF">HMACSHA256(header + "." + payload,pa$sw0rd)</span></span></pre>
+</div></div>
+<div class="sl-block" data-block-type="shape" style="width: 165px; height: 86px; left: 695px; top: 474px;" data-block-id="5b938d7baae4988cb45a3210bbd89d58"><div class="sl-block-content fragment" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 16;" data-shape-stroke-color="#ff0000" data-shape-stroke-width="3" data-fragment-index="0"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 165 86"><defs><clippath id="shape-mask-7-1534280711159"><rect width="165" height="86"></rect></clippath></defs><rect width="165" height="86" clip-path="url(#shape-mask-7-1534280711159)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#ff0000" stroke-width="6"></rect></svg></div></div></section><section data-background-image="bchildress-authentication-authorization/8d62163d99ca0bb6cb1b78a1e74f3ee7.jpg" data-background-opacity="0.2" data-id="e48c5aaa64ec730f1d639599ce8f0ca0">
+
+
+<div class="sl-block" data-block-type="text" style="height: auto; width: 160px; left: 394px; top: 424px;" data-block-id="e621f97822b38218e8f5b2067ad68054"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
+<p><span style="font-size:1.4em">Payload</span></p>
+</div></div>
+
+<div class="sl-block" data-block-type="text" style="height: auto; width: 664px; left: 149px; top: 70px;" data-block-id="30f0f66c95ff9fe46bb13d835712ae9a"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14; background-color: rgb(34, 34, 34); color: rgb(255, 255, 255); padding: 10px;" dir="ui">
+<p style="text-align:left"><span style="color:rgb(255, 255, 255)"><span style="font-size:0.7em">{<br>
+  "sub":  "1234567890",<br>
+  "admin":  true<br>
+  "name":  "Jim Halpert",<br>
+  "email":  "jim@email.com",<br>
+  "iat":  1516239022,</span></span></p>
+
+<p style="text-align:left"><span style="color:rgb(255, 255, 255)"><span style="font-size:0.7em">  "exp":  1516240022,<br>
+  "uid:  "573hdk",<br>
+  "roles":  [   </span></span></p>
+
+<p style="text-align:left"><span style="color:rgb(255, 255, 255)"><span style="font-size:0.7em">             "manager"</span></span><span style="color:rgb(255, 255, 255)"><span style="font-size:0.7em">,</span></span></p>
+
+<p style="text-align:left"><span style="color:rgb(255, 255, 255)"><span style="font-size:0.7em">             "superAdmin"</span></span></p>
+
+<p style="text-align:left"><span style="color:rgb(255, 255, 255)"><span style="font-size:0.7em">   ]</span></span></p>
+
+<p style="text-align:left"><span style="color:rgb(255, 255, 255)"><span style="font-size:0.7em">}</span></span></p>
+</div></div>
+<div class="sl-block" data-block-type="shape" style="width: 340px; height: 52px; left: 160px; top: 153px;" data-block-id="7a513b2f4ecc6e4e66bd949d6387f0e6"><div class="sl-block-content fragment" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 16;" data-shape-stroke-color="#ff0000" data-shape-stroke-width="3" data-fragment-index="1"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 340 52"><defs><clippath id="shape-mask-8-1534280711604"><rect width="340" height="52"></rect></clippath></defs><rect width="340" height="52" clip-path="url(#shape-mask-8-1534280711604)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#ff0000" stroke-width="6"></rect></svg></div></div>
+<div class="sl-block" data-block-type="shape" style="width: 340px; height: 192px; left: 160px; top: 399px;" data-block-id="561b11da39470a090c6b1968f816ce3e"><div class="sl-block-content fragment" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 17;" data-shape-stroke-color="#ff0000" data-shape-stroke-width="3" data-fragment-index="2"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 340 192"><defs><clippath id="shape-mask-9-1534280711606"><rect width="340" height="192"></rect></clippath></defs><rect width="340" height="192" clip-path="url(#shape-mask-9-1534280711606)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#ff0000" stroke-width="6"></rect></svg></div></div>
+<div class="sl-block" data-block-type="text" style="width: 944px; left: 8px; top: 182px; height: auto;" data-block-id="300a3a4d72e5a0b038c0126d7ab6097f"><div class="sl-block-content fragment fade-out" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;" data-fragment-index="0">
+<p><span style="font-size:1.2em"><span style="color:#FF0000">eyJhbGciOiJIUzI1N9</span>.<span style="color:#800080">3ODkwIiwibmFtZSI6</span>.<span style="color:#0000FF">u6aVTx2CHvo</span></span></p>
+</div></div>
+<div class="sl-block" data-block-type="shape" style="width: 340px; height: 86px; left: 356px; top: 162px;" data-block-id="99ce63a63c267ed4bc2d5de1567576dd"><div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 12;" data-shape-stroke-color="#ff0000" data-shape-stroke-width="3"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 340 86"><defs><clippath id="shape-mask-10-1534280711609"><rect width="340" height="86"></rect></clippath></defs><rect width="340" height="86" clip-path="url(#shape-mask-10-1534280711609)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#ff0000" stroke-width="6"></rect></svg></div></div>
+<div class="sl-block" data-block-type="line" style="width: auto; height: auto; left: 481px; top: 256px;" data-block-id="633a926129d5c9806ae5d4009a95a5e0"><div class="sl-block-content" data-line-x1="100" data-line-y1="221" data-line-x2="145" data-line-y2="78" data-line-color="#000000" data-line-start-type="none" data-line-end-type="line-arrow" style="z-index: 11;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="45" height="143" viewbox="100 78 45 143"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="100" y1="221" x2="144" y2="80"></line><line stroke="#000000" stroke-width="2" x1="100" y1="221" x2="144" y2="80"></line><path style="fill: rgba(0,0,0,0);" stroke="#000000" stroke-width="2" transform="translate(144,80) rotate(17.468)" d="M 6 6 L 0 0 L -6 6"></path></svg></div></div></section><section data-id="829d5ba888f15cd2e9614ddc57e7e83d" data-background-image="bchildress-authentication-authorization/8d62163d99ca0bb6cb1b78a1e74f3ee7.jpg" data-background-opacity="0.2">
+
+
+
+
+<div class="sl-block" data-block-type="text" style="height: auto; width: 664px; left: 148px; top: 45px;" data-block-id="9b9c3ed3940d448108a97543d06b4957"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 15; background-color: rgb(34, 34, 34); color: rgb(255, 255, 255); padding: 10px;" dir="ui">
+<p style="text-align:left"><span style="color:rgb(255, 255, 255)"><span style="font-size:0.7em">{<br>
+  "sub":  "1234567890",<br>
+  "admin":  true<br>
+  "name":  "Jim Halpert",<br>
+  "email":  "jim@email.com",<br>
+  "iat":  1516239022,</span></span></p>
+
+<p style="text-align:left"><span style="color:rgb(255, 255, 255)"><span style="font-size:0.7em">  "exp":  1516240022,<br>
+  "uid:  "573hdk",<br>
+  "claims":  [   </span></span></p>
+
+<p style="text-align:left"><span style="color:rgb(255, 255, 255)"><span style="font-size:0.7em">             "canEditUsers"</span></span><span style="color:rgb(255, 255, 255)"><span style="font-size:0.7em">,</span></span></p>
+
+<p style="text-align:left"><span style="color:rgb(255, 255, 255)"><span style="font-size:0.7em">             "canAddProducts",</span></span></p>
+
+<p style="text-align:left"><span style="color:rgb(255, 255, 255)"><span style="font-size:0.7em">             "canAddLocations"</span></span></p>
+
+<p style="text-align:left"><span style="color:rgb(255, 255, 255)"><span style="font-size:0.7em">   ]</span></span></p>
+
+<p style="text-align:left"><span style="color:rgb(255, 255, 255)"><span style="font-size:0.7em">}</span></span></p>
+</div></div>
+
+<div class="sl-block" data-block-type="shape" style="width: 340px; height: 231px; left: 162px; top: 376px;" data-block-id="0bfd02a6a73feedcfdcd6430952828d4"><div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 17;" data-shape-stroke-color="#ff0000" data-shape-stroke-width="3"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 340 231"><defs><clippath id="shape-mask-11-1534280712069"><rect width="340" height="231"></rect></clippath></defs><rect width="340" height="231" clip-path="url(#shape-mask-11-1534280712069)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#ff0000" stroke-width="6"></rect></svg></div></div></section><section data-background-image="bchildress-authentication-authorization/8d62163d99ca0bb6cb1b78a1e74f3ee7.jpg" data-background-opacity="0.2" data-id="5c0824490f3a1b24e0fea8b447abcfa7">
+
+<div class="sl-block" data-block-type="shape" style="width: 340px; height: 86px; left: 356px; top: 162px;" data-block-id="4836d845573e1be3739bd37f10d1d3c0"><div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 12;" data-shape-stroke-color="#ff0000" data-shape-stroke-width="3"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 340 86"><defs><clippath id="shape-mask-12-1534280712398"><rect width="340" height="86"></rect></clippath></defs><rect width="340" height="86" clip-path="url(#shape-mask-12-1534280712398)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#ff0000" stroke-width="6"></rect></svg></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 160px; left: 400px; top: 401px;" data-block-id="1ee8f661e82551fc14fb00a8da40f62c"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
+<p><span style="font-size:1.4em">Payload</span></p>
+</div></div>
+<div class="sl-block" data-block-type="line" style="width: auto; height: auto; left: 480px; top: 258px;" data-block-id="4018de15a4b79fa435b9419fe0a048b7"><div class="sl-block-content" data-line-x1="100" data-line-y1="221" data-line-x2="145" data-line-y2="78" data-line-color="#000000" data-line-start-type="none" data-line-end-type="line-arrow" style="z-index: 11;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="45" height="143" viewbox="100 78 45 143"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="100" y1="221" x2="144" y2="80"></line><line stroke="#000000" stroke-width="2" x1="100" y1="221" x2="144" y2="80"></line><path style="fill: rgba(0,0,0,0);" stroke="#000000" stroke-width="2" transform="translate(144,80) rotate(17.468)" d="M 6 6 L 0 0 L -6 6"></path></svg></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 664px; left: 148px; top: 45px;" data-block-id="8ac683bdf9d1130ba6adcb3deae4e6cc"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13; background-color: rgb(34, 34, 34); color: rgb(255, 255, 255); padding: 10px;" dir="ui">
+<p style="text-align:left"><span style="color:rgb(255, 255, 255)"><span style="font-size:0.7em">{<br>
+  "sub":  "1234567890",<br>
+  "admin":  true<br>
+  "name":  "Jim Halpert",<br>
+  "email":  "jim@email.com",<br>
+  "iat":  1516239022,</span></span></p>
+
+<p style="text-align:left"><span style="color:rgb(255, 255, 255)"><span style="font-size:0.7em">  "exp":  1516240022,<br>
+  "uid:  "573hdk",<br>
+  "groups":  [   </span></span></p>
+
+<p style="text-align:left"><span style="color:rgb(255, 255, 255)"><span style="font-size:0.7em">             3</span></span><span style="color:rgb(255, 255, 255)"><span style="font-size:0.7em">,</span></span></p>
+
+<p style="text-align:left"><span style="color:rgb(255, 255, 255)"><span style="font-size:0.7em">             45,</span></span></p>
+
+<p style="text-align:left"><span style="color:rgb(255, 255, 255)"><span style="font-size:0.7em">             46</span></span></p>
+
+<p style="text-align:left"><span style="color:rgb(255, 255, 255)"><span style="font-size:0.7em">   ]</span></span></p>
+
+<p style="text-align:left"><span style="color:rgb(255, 255, 255)"><span style="font-size:0.7em">}</span></span></p>
+</div></div>
+
+<div class="sl-block" data-block-type="shape" style="width: 340px; height: 235px; left: 160px; top: 376px;" data-block-id="f59d5215b9dba0f742e3c8fe0c783004"><div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 15;" data-shape-stroke-color="#ff0000" data-shape-stroke-width="3"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 340 235"><defs><clippath id="shape-mask-13-1534280712409"><rect width="340" height="235"></rect></clippath></defs><rect width="340" height="235" clip-path="url(#shape-mask-13-1534280712409)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#ff0000" stroke-width="6"></rect></svg></div></div></section><section data-id="92ef7f639de60ba4f0cbf4c1069c7546" data-background-opacity="0.2" data-background-image="bchildress-authentication-authorization/8d62163d99ca0bb6cb1b78a1e74f3ee7.jpg"><div class="sl-block" data-block-type="text" style="width: 806px; left: 82px; top: 189px; height: auto;" data-block-id="5861946e1968ffce87dc0533c6bccefd"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 10;">
+<h1>Authentication</h1>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 286px; height: auto;" data-block-id="37bd6d4caca86ccd09f6ce7eedac9242"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Subtitle" style="z-index: 11;">
+<h2>Who am i?</h2>
+</div></div></section><section data-id="0c8eade7a0258900431a73e8518e6c0a" data-background-image="bchildress-authentication-authorization/aa91c1fe056279ba74e1f4f8c5b20607.jpg" data-background-opacity="0.2"><div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 189px; height: auto;" data-block-id="9f178c6f9d8aa803ad2a0993ba4ad9e2"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 10;">
+<h1>Authorization</h1>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 286px; height: auto;" data-block-id="cb3ba324593f95eb760ac0b93eb840eb"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Subtitle" style="z-index: 11;">
+<h2>What can I do?</h2>
+</div></div></section><section data-id="20a8d6720ba7f18d625ff86ab4fc97c1" data-background-opacity="0.2" data-background-image="bchildress-authentication-authorization/aa91c1fe056279ba74e1f4f8c5b20607.jpg">
+
+
+
+<div class="sl-block" data-block-type="shape" data-block-id="309a8bc518e7d8f3b65910e486e8c980" style="min-width: 4px; min-height: 4px; width: 176px; height: 111px; left: 7px; top: 96px;"><div class="sl-block-content fragment" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 13;" data-shape-stroke-color="#ff0000" data-shape-stroke-width="3" data-fragment-index="0"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 176 111"><defs><clippath id="shape-mask-14-1534280712904"><rect width="176" height="111"></rect></clippath></defs><rect width="176" height="111" clip-path="url(#shape-mask-14-1534280712904)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#ff0000" stroke-width="6"></rect></svg></div></div>
+<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 104px; height: 50px; left: 856px; top: 46px;" data-block-id="f12829013cf9eda057394a0d3b1278ee"><div class="sl-block-content fragment" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 14;" data-shape-stroke-color="#ff0000" data-shape-stroke-width="3" data-fragment-index="1"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 104 50"><defs><clippath id="shape-mask-15-1534280712910"><rect width="104" height="50"></rect></clippath></defs><rect width="104" height="50" clip-path="url(#shape-mask-15-1534280712910)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#ff0000" stroke-width="6"></rect></svg></div></div>
+<div class="sl-block" data-block-type="image" data-block-id="03a6aea3a2bdd4e3f7f82de3750a88a3" style="min-width: 4px; min-height: 4px; width: 960px; height: 608px; left: 0px; top: 46px;"><div class="sl-block-content" style="z-index: 10;"><img data-natural-width="1075" data-natural-height="681" style="" data-lazy-loaded="" data-src="bchildress-authentication-authorization/232308d4076ed2d2fb4385ef4c0af620.png"></div></div></section><section data-id="5487da2dd9e67ed3991f70e9209bd1a7" data-background-image="bchildress-authentication-authorization/aa91c1fe056279ba74e1f4f8c5b20607.jpg" data-background-opacity="0.2">
+<div class="sl-block" data-block-type="text" style="height: auto; width: 600px; left: 180px; top: 173px;" data-block-id="d0eac438e9e4570f0e93453258bb7510"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<p>Example of menu</p>
+
+<p>Compare user, admin</p>
+
+<p>Code example fade in</p>
+</div></div>
+<div class="sl-block" data-block-type="code" style="width: 467px; height: 300px; left: 484px; top: 189px;" data-block-id="b47215c61313a4d152256a35bbc43283"><div class="sl-block-content notranslate fragment" style="z-index: 13;" data-fragment-index="1"><pre><code>&lt;ul&gt;
+...
+  &lt;li *ngIf="admin"&gt;
+    &lt;a routerLink="/admin"
+        routerLinkActive="active"&gt;Admin&lt;/a&gt;
+  &lt;/li&gt;
+...
+  &lt;li *ngIf="admin"&gt;
+    &lt;a routerLink="/users"
+        routerLinkActive="active"&gt;Users&lt;/a&gt;
+  &lt;/li&gt;
+...
+&lt;/ul&gt;</code></pre></div></div>
+<div class="sl-block" data-block-type="image" style="width: 960px; height: 602px; left: 0px; top: 49px; min-width: 4px; min-height: 4px;" data-block-id="80cd3fc7d70a0fe9a9a89a7d94c0fcc5"><div class="sl-block-content" style="z-index: 12;"><img style="" data-natural-width="1079" data-natural-height="677" data-lazy-loaded="" data-src="bchildress-authentication-authorization/d4d96f769d5b520335566950ad84875c.png"></div></div>
+<div class="sl-block" data-block-type="shape" style="width: 428px; height: 82px; left: 498px; top: 230px;" data-block-id="b112034b9f2874fa8d08c29cb70be454"><div class="sl-block-content fragment" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 14;" data-shape-stroke-color="#ff0000" data-shape-stroke-width="3" data-fragment-index="2"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 428 82"><defs><clippath id="shape-mask-16-1534280713301"><rect width="428" height="82"></rect></clippath></defs><rect width="428" height="82" clip-path="url(#shape-mask-16-1534280713301)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#ff0000" stroke-width="6"></rect></svg></div></div>
+<div class="sl-block" data-block-type="shape" style="width: 154px; height: 30px; left: 6px; top: 220px;" data-block-id="bab160d4ce6fba3bed32b4d8d93b054c"><div class="sl-block-content fragment" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 15;" data-shape-stroke-color="#ff0000" data-shape-stroke-width="3" data-fragment-index="0"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 154 30"><defs><clippath id="shape-mask-17-1534280713304"><rect width="154" height="30"></rect></clippath></defs><rect width="154" height="30" clip-path="url(#shape-mask-17-1534280713304)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#ff0000" stroke-width="6"></rect></svg></div></div>
+<div class="sl-block" data-block-type="shape" style="width: 154px; height: 30px; left: 6px; top: 358px;" data-block-id="f5cc811257fd3b2845740e88c2179952"><div class="sl-block-content fragment" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 16;" data-shape-stroke-color="#ff0000" data-shape-stroke-width="3" data-fragment-index="0"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 154 30"><defs><clippath id="shape-mask-18-1534280713307"><rect width="154" height="30"></rect></clippath></defs><rect width="154" height="30" clip-path="url(#shape-mask-18-1534280713307)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#ff0000" stroke-width="6"></rect></svg></div></div>
+<div class="sl-block" data-block-type="line" style="width: auto; height: auto; min-width: 1px; min-height: 1px; left: 160px; top: 235px;" data-block-id="0e056adb8265a6113d2e6fd9805f3aa5"><div class="sl-block-content fragment" data-line-x1="-220" data-line-y1="6" data-line-x2="118" data-line-y2="42" data-line-color="#ff0000" data-line-start-type="none" data-line-end-type="none" style="z-index: 18;" data-fragment-index="2"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="338" height="36" viewbox="-220 6 338 36"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="-220" y1="6" x2="118" y2="42"></line><line stroke="#ff0000" stroke-width="2" x1="-220" y1="6" x2="118" y2="42"></line></svg></div></div>
+<div class="sl-block" data-block-type="shape" style="width: 46px; height: 46px; left: 266px; top: 49px;" data-block-id="6f69470874cbbf38e89ba61702b3d4b8"><div class="sl-block-content fragment" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 19;" data-shape-stroke-color="#ff0000" data-shape-stroke-width="3" data-fragment-index="0"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 46 46"><defs><clippath id="shape-mask-19-1534280713312"><rect width="46" height="46"></rect></clippath></defs><rect width="46" height="46" clip-path="url(#shape-mask-19-1534280713312)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#ff0000" stroke-width="6"></rect></svg></div></div></section><section data-background-image="bchildress-authentication-authorization/aa91c1fe056279ba74e1f4f8c5b20607.jpg" data-background-opacity="0.2" data-id="b9c673673327a134b29904bc0b8174cf">
+<div class="sl-block" data-block-type="text" style="height: auto; width: 600px; left: 180px; top: 173px;" data-block-id="1fae3ea85b85597a4f1bd23c4f8463ee"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
+<p>Example of menu</p>
+
+<p>Compare user, admin</p>
+
+<p>Code example fade in</p>
+</div></div>
+<div class="sl-block" data-block-type="code" style="width: 569px; height: 322px; left: 382px; top: 189px;" data-block-id="e8cb4d812c7212c70efa4c79c46fbead"><div class="sl-block-content notranslate" style="z-index: 12;"><pre><code>&lt;ul&gt;
+...
+  &lt;li *ngIf="role === 'admin' || role === 'auditor' || 
+        role === 'superAdmin'"&gt;
+    &lt;a routerLink="/admin"
+        routerLinkActive="active"&gt;Admin&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a routerLink="/products"
+        routerLinkActive="active"&gt;Products&lt;/a&gt;
+  &lt;/li&gt;
+...
+&lt;/ul&gt;</code></pre></div></div>
+<div class="sl-block" data-block-type="image" style="width: 960px; height: 602px; left: 0px; top: 49px; min-width: 4px; min-height: 4px;" data-block-id="d582508a3d972df2ba15e4223c566e18"><div class="sl-block-content" style="z-index: 11;"><img style="" data-natural-width="1079" data-natural-height="677" data-lazy-loaded="" data-src="bchildress-authentication-authorization/d4d96f769d5b520335566950ad84875c.png"></div></div>
+<div class="sl-block" data-block-type="shape" style="width: 507px; height: 83px; left: 435px; top: 211px;" data-block-id="ff2993e602d944df222e961ab10b047c"><div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 13;" data-shape-stroke-color="#ff0000" data-shape-stroke-width="3"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 507 83"><defs><clippath id="shape-mask-20-1534280713444"><rect width="507" height="83"></rect></clippath></defs><rect width="507" height="83" clip-path="url(#shape-mask-20-1534280713444)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#ff0000" stroke-width="6"></rect></svg></div></div>
+
+<div class="sl-block" data-block-type="line" style="width: auto; height: auto; left: 160px; top: 235px;" data-block-id="2aa2549048210bde037fcdf41736ba7f"><div class="sl-block-content" data-line-x1="-220" data-line-y1="6" data-line-x2="55" data-line-y2="24" data-line-color="#ff0000" data-line-start-type="none" data-line-end-type="none" style="z-index: 14;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="275" height="18" viewbox="-220 6 275 18"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="-220" y1="6" x2="55" y2="24"></line><line stroke="#ff0000" stroke-width="2" x1="-220" y1="6" x2="55" y2="24"></line></svg></div></div>
+<div class="sl-block" data-block-type="shape" style="width: 154px; height: 30px; left: 6px; top: 220px;" data-block-id="8aa04e9937b3e1b3dc8238d6fb7b90a7"><div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 15;" data-shape-stroke-color="#ff0000" data-shape-stroke-width="3"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 154 30"><defs><clippath id="shape-mask-21-1534280713455"><rect width="154" height="30"></rect></clippath></defs><rect width="154" height="30" clip-path="url(#shape-mask-21-1534280713455)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#ff0000" stroke-width="6"></rect></svg></div></div></section><section data-background-image="bchildress-authentication-authorization/aa91c1fe056279ba74e1f4f8c5b20607.jpg" data-background-opacity="0.2" data-id="1fa3ab2fc3f4007af84b901c245e25d2">
+
+<div class="sl-block" data-block-type="code" style="width: 493px; height: 322px; left: 458px; top: 189px;" data-block-id="a5b3d08b445b8838c6ffc156e5cfec0a"><div class="sl-block-style" style="z-index: 11; opacity: 0.2;"><div class="sl-block-content notranslate" style="z-index: 11;"><pre><code>&lt;ul&gt;
+...
+  &lt;li *ngIf="admin || auditor || 
+        superAdmin || superDuperAdmin ||
+        manager"&gt;
+    &lt;a routerLink="/admin"
+        routerLinkActive="active"&gt;Admin&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a routerLink="/products"
+        routerLinkActive="active"&gt;Products&lt;/a&gt;
+  &lt;/li&gt;
+...
+&lt;/ul&gt;</code></pre></div></div></div>
+<div class="sl-block" data-block-type="image" style="width: 960px; height: 602px; left: 0px; top: 49px; min-width: 4px; min-height: 4px;" data-block-id="f9cb988edd89cc11b284d75d7f6c0cea"><div class="sl-block-style" style="z-index: 10; opacity: 0.2;"><div class="sl-block-content" style="z-index: 10;"><img style="" data-natural-width="1079" data-natural-height="677" data-lazy-loaded="" data-src="bchildress-authentication-authorization/d4d96f769d5b520335566950ad84875c.png"></div></div></div>
+<div class="sl-block" data-block-type="shape" style="width: 472px; height: 83px; left: 469px; top: 228px;" data-block-id="f078d2010fcfb4ce52b40762a8d414bf"><div class="sl-block-style" style="z-index: 12; opacity: 0.2;"><div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 12;" data-shape-stroke-color="#ff0000" data-shape-stroke-width="3"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 472 83"><defs><clippath id="shape-mask-22-1534280713603"><rect width="472" height="83"></rect></clippath></defs><rect width="472" height="83" clip-path="url(#shape-mask-22-1534280713603)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#ff0000" stroke-width="6"></rect></svg></div></div></div>
+
+<div class="sl-block" data-block-type="line" style="width: auto; height: auto; left: 160px; top: 235px;" data-block-id="186af8bbd23f50c3f1b2bf4ec6f3dbed"><div class="sl-block-style" style="z-index: 13; opacity: 0.2;"><div class="sl-block-content" data-line-x1="-220" data-line-y1="6" data-line-x2="89" data-line-y2="40" data-line-color="#ff0000" data-line-start-type="none" data-line-end-type="none" style="z-index: 13;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="309" height="34" viewbox="-220 6 309 34"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="-220" y1="6" x2="89" y2="40"></line><line stroke="#ff0000" stroke-width="2" x1="-220" y1="6" x2="89" y2="40"></line></svg></div></div></div>
+<div class="sl-block" data-block-type="shape" style="width: 154px; height: 30px; left: 6px; top: 220px;" data-block-id="c31cfac1d9e503758b11a4136c2e8541"><div class="sl-block-style" style="z-index: 14; opacity: 0.2;"><div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 14;" data-shape-stroke-color="#ff0000" data-shape-stroke-width="3"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 154 30"><defs><clippath id="shape-mask-23-1534280713607"><rect width="154" height="30"></rect></clippath></defs><rect width="154" height="30" clip-path="url(#shape-mask-23-1534280713607)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#ff0000" stroke-width="6"></rect></svg></div></div></div>
+<div class="sl-block" data-block-type="text" data-block-id="053b80ab48966c8ac7cdd2ecbf2100ec" style="height: auto; min-width: 30px; min-height: 30px; width: 148px; left: 144px; top: 78px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 17; color: rgb(68, 68, 68); transition-duration: 0.6s; transition-delay: 0.5s;" data-animation-type="fade-in">
+<p><span style="font-size:2.0em">{</span></p>
+
+<p><span style="font-size:2.0em">     C</span></p>
+
+<p><span style="font-size:2.0em">     R<br>
+     U<br>
+     D</span></p>
+
+<p><span style="font-size:2.0em">}</span></p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 176px; left: 262px; top: 158px;" data-block-id="7985a46ae521b3dcd7e5e6d50bc2e14b"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 18; color: rgb(68, 68, 68); transition-duration: 0.6s; transition-delay: 1s;" data-animation-type="fade-in">
+<p><span style="font-size:2.0em">reate</span></p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 176px; left: 241px; top: 246px;" data-block-id="153d09befa3b97e3a902571f51c4dc39"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 19; color: rgb(68, 68, 68); transition-duration: 0.6s; transition-delay: 1.5s;" data-animation-type="fade-in">
+<p><span style="font-size:2.0em">ead</span></p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 176px; left: 271px; top: 324px;" data-block-id="0a2de67ac088b98802e50e4893e36757"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 21; color: rgb(68, 68, 68); transition-duration: 0.6s; transition-delay: 2s;" data-animation-type="fade-in">
+<p><span style="font-size:2.0em">pdate</span></p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 176px; left: 260px; top: 402px;" data-block-id="41dbfd9f4600b668feb68b6c2f0e8477"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 20; color: rgb(68, 68, 68); transition-duration: 0.6s; transition-delay: 2.5s;" data-animation-type="fade-in">
+<p><span style="font-size:2.0em">elete</span></p>
+</div></div>
+<div class="sl-block" data-block-type="shape" data-block-id="00e4ae3179412c9bfe780b95c39ba836" style="min-width: 4px; min-height: 4px; width: 580px; height: 494px; left: 144px; top: 82px;"><div class="sl-block-style" style="z-index: 16; opacity: 0.95;"><div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgb(238, 238, 238)" data-shape-stretch="true" style="z-index: 16; transition-duration: 0.6s; transition-delay: 0.5s;" data-animation-type="fade-in"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 580 494"><rect width="580" height="494" class="shape-element" fill="rgb(238, 238, 238)"></rect></svg></div></div></div></section><section data-background-image="bchildress-authentication-authorization/aa91c1fe056279ba74e1f4f8c5b20607.jpg" data-background-opacity="0.2" data-id="e28927c94e7545ad2c14c53d95cd6de5">
+<div class="sl-block" data-block-type="text" style="height: auto; width: 600px; left: 180px; top: 173px;" data-block-id="17ef4d54ebbac131da12abb58c451c78"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
+<p>Example of menu</p>
+
+<p>Compare user, admin</p>
+
+<p>Code example fade in</p>
+</div></div>
+<div class="sl-block" data-block-type="code" style="width: 493px; height: 322px; left: 458px; top: 189px;" data-block-id="9c32882756bd6959edf8954ccd3c9bdf"><div class="sl-block-content notranslate" style="z-index: 12;"><pre><code>&lt;ul&gt;
+...
+  &lt;li&gt;
+    &lt;a routerLink="/products"
+        routerLinkActive="active"&gt;Products&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li *ngIf="getRouteAuth('users')"&gt;
+    &lt;a routerLink="/users"
+        routerLinkActive="active"&gt;Users&lt;/a&gt;
+  &lt;/li&gt;
+...
+&lt;/ul&gt;
+
+
+</code></pre></div></div>
+<div class="sl-block" data-block-type="image" style="width: 960px; height: 602px; left: 0px; top: 49px; min-width: 4px; min-height: 4px;" data-block-id="369868882f27f56c7047ffc5e3bd8cd2"><div class="sl-block-content" style="z-index: 11;"><img style="" data-natural-width="1079" data-natural-height="677" data-lazy-loaded="" data-src="bchildress-authentication-authorization/d4d96f769d5b520335566950ad84875c.png"></div></div>
+<div class="sl-block" data-block-type="shape" style="width: 435px; height: 82px; left: 469px; top: 305px;" data-block-id="f85380d482c3e84d629d3e4745adc39d"><div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 13;" data-shape-stroke-color="#ff0000" data-shape-stroke-width="3"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 435 82"><defs><clippath id="shape-mask-24-1534280713829"><rect width="435" height="82"></rect></clippath></defs><rect width="435" height="82" clip-path="url(#shape-mask-24-1534280713829)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#ff0000" stroke-width="6"></rect></svg></div></div>
+
+<div class="sl-block" data-block-type="line" style="width: auto; height: auto; left: 160px; top: 346px;" data-block-id="4d574f490df647cff9ea0b4625bfad37"><div class="sl-block-content" data-line-x1="-220" data-line-y1="143" data-line-x2="89" data-line-y2="117" data-line-color="#ff0000" data-line-start-type="none" data-line-end-type="none" style="z-index: 16;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="309" height="26" viewbox="-220 117 309 26"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="-220" y1="143" x2="89" y2="117"></line><line stroke="#ff0000" stroke-width="2" x1="-220" y1="143" x2="89" y2="117"></line></svg></div></div>
+<div class="sl-block" data-block-type="shape" style="width: 154px; height: 30px; left: 6px; top: 357px;" data-block-id="7971522babe53018230c309ecde2b4d8"><div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 14;" data-shape-stroke-color="#ff0000" data-shape-stroke-width="3"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 154 30"><defs><clippath id="shape-mask-25-1534280713844"><rect width="154" height="30"></rect></clippath></defs><rect width="154" height="30" clip-path="url(#shape-mask-25-1534280713844)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#ff0000" stroke-width="6"></rect></svg></div></div>
+
+
+</section><section data-background-image="bchildress-authentication-authorization/aa91c1fe056279ba74e1f4f8c5b20607.jpg" data-background-opacity="0.2" data-id="89408982fa7b921583ba069a84c0877b">
+
+
+<div class="sl-block" data-block-type="image" style="width: 960px; height: 602px; left: 0px; top: 49px; min-width: 4px; min-height: 4px;" data-block-id="e34cda4ee901965aee7ba549ba2890a9"><div class="sl-block-content" style="z-index: 10;"><img style="" data-natural-width="1079" data-natural-height="677" data-lazy-loaded="" data-src="bchildress-authentication-authorization/d4d96f769d5b520335566950ad84875c.png"></div></div>
+
+
+<div class="sl-block" data-block-type="line" style="width: auto; height: auto; left: 160px; top: 224px;" data-block-id="f40750979de95800e64373c9af60683a"><div class="sl-block-content fragment" data-line-x1="-220" data-line-y1="143" data-line-x2="61" data-line-y2="-5" data-line-color="#ff0000" data-line-start-type="none" data-line-end-type="line-arrow" style="z-index: 18;" data-fragment-index="0"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="281" height="148" viewbox="-220 -5 281 148"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="-220" y1="143" x2="59" y2="-4"></line><line stroke="#ff0000" stroke-width="2" x1="-220" y1="143" x2="59" y2="-4"></line><path style="fill: rgba(0,0,0,0);" stroke="#ff0000" stroke-width="2" transform="translate(59,-4) rotate(62.225)" d="M 6 6 L 0 0 L -6 6"></path></svg></div></div>
+<div class="sl-block" data-block-type="shape" style="width: 154px; height: 30px; left: 6px; top: 357px;" data-block-id="90128a486932c67f31b06b27749b1773"><div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 15;" data-shape-stroke-color="#ff0000" data-shape-stroke-width="3"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 154 30"><defs><clippath id="shape-mask-26-1534280714029"><rect width="154" height="30"></rect></clippath></defs><rect width="154" height="30" clip-path="url(#shape-mask-26-1534280714029)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#ff0000" stroke-width="6"></rect></svg></div></div>
+<div class="sl-block" data-block-type="code" style="width: 747px; height: 522px; left: 199px; top: 121px;" data-block-id="654f989ea3451abbc3a4afca7bf528cc"><div class="sl-block-content notranslate fragment" style="z-index: 17;" data-fragment-index="1"><pre class="typescript"><code style="padding: 20px;">Authorization Service
+
+// API Response
+const routeAuth = [..{
+                      "name": "users",
+                      "create": true,
+                      "read": true,
+                      "update": true,
+                      "delete": true
+ }];
+
+// Authorization Service
+let getRouteAuth = (route: string) =&gt; {
+  
+  // Find a matching route authorization for provided route
+  const auth = routeAuth.find((obj) =&gt; { return obj.name === route; });
+  
+  if (auth){
+    return auth.read;
+  }
+
+  return false;
+ 
+}</code></pre></div></div>
+<div class="sl-block" data-block-type="shape" style="width: 210px; height: 28px; left: 246px; top: 482px;" data-block-id="10fc1a3bd7fbc3b16a0a7bc7b6578410"><div class="sl-block-content fragment" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 20;" data-shape-stroke-color="#ff0000" data-shape-stroke-width="3" data-fragment-index="2"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 210 28"><defs><clippath id="shape-mask-27-1534280714075"><rect width="210" height="28"></rect></clippath></defs><rect width="210" height="28" clip-path="url(#shape-mask-27-1534280714075)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#ff0000" stroke-width="6"></rect></svg></div></div>
+<div class="sl-block" data-block-type="shape" style="width: 154px; height: 30px; left: 441px; top: 209px;" data-block-id="f43a2868af1019a91804a1b8f8c37541"><div class="sl-block-content fragment" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 19;" data-shape-stroke-color="#ff0000" data-shape-stroke-width="3" data-fragment-index="0"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 154 30"><defs><clippath id="shape-mask-28-1534280714078"><rect width="154" height="30"></rect></clippath></defs><rect width="154" height="30" clip-path="url(#shape-mask-28-1534280714078)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#ff0000" stroke-width="6"></rect></svg></div></div>
+<div class="sl-block" data-block-type="code" style="width: 747px; height: 472px; left: 199px; top: 121px;" data-block-id="e455fe13d3322e8340bc9b28050bbb61"><div class="sl-block-content notranslate" style="z-index: 16;"><pre class="typescript"><code style="padding: 20px;">Authorization Service
+
+// API Response
+const routeAuth = [..{
+                      "name": "users",
+                      "create": true,
+                      "read": true,
+                      "update": true,
+                      "delete": true
+ }];
+</code></pre></div></div></section><section data-background-image="bchildress-authentication-authorization/aa91c1fe056279ba74e1f4f8c5b20607.jpg" data-background-opacity="0.2" data-id="ac1ec3fab5c994f56ebf441076bc1f86">
+
+<div class="sl-block" data-block-type="code" style="width: 862px; height: 332px; left: 98px; top: 228px;" data-block-id="06df0d6c87e97a377135a70131c7263a"><div class="sl-block-content notranslate fragment" style="z-index: 16; font-size: 150%;" data-fragment-index="1"><pre class="typescript"><code style="padding: 20px;">// Route is the information about a specific route
+canActivate(route: ActivatedRoute): boolean {
+    if (!this.auth.isAuthenticated() ||
+      !this.auth.getRouteAuth(route)) {
+      this.router.navigate(['login']);
+      return false;
+    }
+    
+    return true;
+}</code></pre></div></div>
+<div class="sl-block" data-block-type="image" style="width: 252px; height: 581px; left: 0px; top: 87px; min-width: 4px; min-height: 4px;" data-block-id="9564a8045d5f976da2a62c2b93d0b852"><div class="sl-block-content" style="z-index: 10;"><img data-natural-width="210" data-natural-height="485" style="" data-lazy-loaded="" data-src="bchildress-authentication-authorization/934d2468acde0d1240c0c7581846e4c9.png"></div></div>
+
+
+<div class="sl-block" data-block-type="shape" data-block-id="6e49a1b500a145703328b717bb778e6b" style="min-width: 4px; min-height: 4px; width: 123px; height: 54px; left: 348px; top: 33px;"><div class="sl-block-content fragment" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 19;" data-shape-stroke-color="#ff0000" data-shape-stroke-width="3" data-fragment-index="0"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 123 54"><defs><clippath id="shape-mask-29-1534280714293"><rect width="123" height="54"></rect></clippath></defs><rect width="123" height="54" clip-path="url(#shape-mask-29-1534280714293)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#ff0000" stroke-width="6"></rect></svg></div></div>
+
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 92px; left: 354px; top: 129px;" data-block-id="b99d781dddcb6c671213d1ef291cedf0"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;" data-fragment-index="0">
+<p>route</p>
+</div></div>
+<div class="sl-block" data-block-type="line" style="width: auto; height: auto; min-width: 1px; min-height: 1px; left: 410px; top: 87px;" data-block-id="69f483764e401bc308b0afacd59cb92b"><div class="sl-block-content fragment" data-line-x1="192" data-line-y1="-91" data-line-x2="159" data-line-y2="-142" data-line-color="#000000" data-line-start-type="none" data-line-end-type="line-arrow" style="z-index: 20;" data-fragment-index="0"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="33" height="51" viewbox="159 -142 33 51"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="192" y1="-91" x2="160" y2="-140"></line><line stroke="#000000" stroke-width="2" x1="192" y1="-91" x2="160" y2="-140"></line><path style="fill: rgba(0,0,0,0);" stroke="#000000" stroke-width="2" transform="translate(160,-140) rotate(-32.905)" d="M 6 6 L 0 0 L -6 6"></path></svg></div></div>
+<div class="sl-block" data-block-type="line" style="width: auto; height: auto; min-width: 1px; min-height: 1px; left: 410px; top: 168px;" data-block-id="9ef3fcdd4d4342692057bbdd12eef158"><div class="sl-block-content fragment" data-line-x1="177" data-line-y1="-67" data-line-x2="144" data-line-y2="-13" data-line-color="#000000" data-line-start-type="none" data-line-end-type="line-arrow" style="z-index: 12;" data-fragment-index="1"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="33" height="54" viewbox="144 -67 33 54"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="177" y1="-67" x2="145" y2="-15"></line><line stroke="#000000" stroke-width="2" x1="177" y1="-67" x2="145" y2="-15"></line><path style="fill: rgba(0,0,0,0);" stroke="#000000" stroke-width="2" transform="translate(145,-15) rotate(211.43)" d="M 6 6 L 0 0 L -6 6"></path></svg></div></div>
+<div class="sl-block" data-block-type="image" style="min-width: 4px; min-height: 4px; width: 330px; height: 186px; left: 395px; top: 241px;" data-block-id="7217eaf0a90bfa8d8e315fee1e95013e"><div class="sl-block-content" style="z-index: 13;"><img data-natural-width="480" data-natural-height="270" style="" data-lazy-loaded="" data-src="bchildress-authentication-authorization/cfef7b502621bd53e43fdad027f2e4b3.gif"></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 103px; left: 436px; top: 129px;" data-block-id="8d3558d58a8c8238b9780eba8e1c9686"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 15;" data-fragment-index="1">
+<p>guard</p>
+</div></div>
+<div class="sl-block" data-block-type="image" data-block-id="86cf86750916ff51fe1b27e62cbd3e0c" style="min-width: 4px; min-height: 4px; width: 960px; height: 53px; left: 0px; top: 38px;"><div class="sl-block-content" style="z-index: 18;"><img data-natural-width="611" data-natural-height="34" style="" data-lazy-loaded="" data-src="bchildress-authentication-authorization/be0107ec6e9bc2111487c31b872a65a1.png"></div></div></section><section data-background-image="bchildress-authentication-authorization/aa91c1fe056279ba74e1f4f8c5b20607.jpg" data-background-opacity="0.2" data-id="1c01db00c8e8b9b1a4c374049420ca7f">
+
+
+<div class="sl-block" data-block-type="image" style="width: 252px; height: 581px; left: 0px; top: 67px; min-width: 4px; min-height: 4px;" data-block-id="458ea0b8cb56f36958200b9ceb112c98"><div class="sl-block-content" style="z-index: 10;"><img data-natural-width="210" data-natural-height="485" style="" data-lazy-loaded="" data-src="bchildress-authentication-authorization/934d2468acde0d1240c0c7581846e4c9.png"></div></div>
+
+<div class="sl-block" data-block-type="code" style="width: 960px; height: 620px; left: 0px; top: 67px;" data-block-id="10ebcde79c12a04cce368f9abeafdf06"><div class="sl-block-content notranslate" style="z-index: 11; font-size: 122%;"><pre class="typescript"><code style="padding: 20px;">// Angular Route Guard
+
+// API Response
+const routeAuth = [..{
+                      "name": "users",
+                      "create": true,
+                      "read": true,
+                      "update": true,
+                      "delete": true
+ }];
+
+// Authorization Service
+let getRouteAuth = (route: string) =&gt; {
+  
+  // Find a matching route authorization for provided route
+  const auth = routeAuth.find((obj) =&gt; { return obj.name === route; });
+  
+  if (auth){
+    return auth.read;
+  }
+
+  return false;
+ 
+}</code></pre></div></div>
+
+
+
+
+<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 99px; height: 54px; left: 348px; top: 14px;" data-block-id="05e1ae776d7fd3a25490ae6a2cef0886"><div class="sl-block-content fragment" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 13;" data-shape-stroke-color="#ff0000" data-shape-stroke-width="3" data-fragment-index="0"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 99 54"><defs><clippath id="shape-mask-30-1534280714643"><rect width="99" height="54"></rect></clippath></defs><rect width="99" height="54" clip-path="url(#shape-mask-30-1534280714643)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#ff0000" stroke-width="6"></rect></svg></div></div>
+<div class="sl-block" data-block-type="image" style="min-width: 4px; min-height: 4px; width: 960px; height: 53px; left: 0px; top: 14px;" data-block-id="ee5299da6335c7dc1f12119d68c25f1b"><div class="sl-block-content" style="z-index: 12;"><img data-natural-width="611" data-natural-height="34" style="" data-lazy-loaded="" data-src="bchildress-authentication-authorization/be0107ec6e9bc2111487c31b872a65a1.png"></div></div>
+<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 209px; height: 43px; left: 278px; top: 174px;" data-block-id="b2625eee87bc2ffa574b8404b2b7aac0"><div class="sl-block-content fragment" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 15;" data-shape-stroke-color="#ff0000" data-shape-stroke-width="3" data-fragment-index="1"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 209 43"><defs><clippath id="shape-mask-31-1534280714653"><rect width="209" height="43"></rect></clippath></defs><rect width="209" height="43" clip-path="url(#shape-mask-31-1534280714653)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#ff0000" stroke-width="6"></rect></svg></div></div>
+<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 233px; height: 38px; left: 52px; top: 514px;" data-block-id="c9cb1d7735435c9be09cb58dc7d6adc3"><div class="sl-block-content fragment" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 16;" data-shape-stroke-color="#ff0000" data-shape-stroke-width="3" data-fragment-index="2"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 233 38"><defs><clippath id="shape-mask-32-1534280714658"><rect width="233" height="38"></rect></clippath></defs><rect width="233" height="38" clip-path="url(#shape-mask-32-1534280714658)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#ff0000" stroke-width="6"></rect></svg></div></div></section><section data-background-image="bchildress-authentication-authorization/aa91c1fe056279ba74e1f4f8c5b20607.jpg" data-background-opacity="0.2" data-id="5cc3ab8e4b202c9f70a676aca8e1c16d">
+
+
+
+
+<div class="sl-block" data-block-type="image" style="width: 960px; height: 447px; left: 0px; top: 127px; min-width: 4px; min-height: 4px;" data-block-id="d9285c33780c195b4b34230e05e7520a"><div class="sl-block-content" style="z-index: 11;"><img data-natural-width="2032" data-natural-height="946" style="" data-lazy-loaded="" data-src="bchildress-authentication-authorization/21dc82a6dd52f77c89f523dec0a2b116.png"></div></div>
+
+
+</section><section data-background-image="bchildress-authentication-authorization/aa91c1fe056279ba74e1f4f8c5b20607.jpg" data-background-opacity="0.2" data-id="bd67441c721c4d934584f2a81f381d27">
+
+
+
+
+<div class="sl-block" data-block-type="code" style="width: 960px; height: 632px; left: 0px; top: 34px;" data-block-id="b34372f1ba61233c87f1a93d187c4ab5"><div class="sl-block-content notranslate" style="z-index: 11; font-size: 110%;"><pre class="xml"><code style="padding: 20px;">&lt;!-- User Component --&gt;
+
+&lt;form *ngIf="role === 'admin' || role === 'user'"&gt;
+  &lt;div class="form-row"&gt;
+    &lt;div class="form-group col-md-6"&gt;
+      &lt;label for="firstName"&gt;First Name&lt;/label&gt;
+      &lt;input type="text" id="firstName" placeholder="First Name"&gt;
+    &lt;/div&gt;
+    &lt;div class="form-group col-md-6"&gt;
+      &lt;label for="lastName"&gt;Last Name&lt;/label&gt;
+      &lt;input type="text" id="lastName" placeholder="Last Name"&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label for="address"&gt;Address&lt;/label&gt;
+    &lt;input type="text" id="address" placeholder="1234 Main St"&gt;
+  &lt;/div&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label for="address2"&gt;Address 2&lt;/label&gt;
+    &lt;input type="text" id="address2" 
+    placeholder="Apartment, studio, or floor"&gt;
+  &lt;/div&gt;
+...
+  &lt;button type="submit"&gt;Update&lt;/button&gt;
+&lt;/form&gt;</code></pre></div></div>
+<div class="sl-block" data-block-type="shape" data-block-id="42e036bc5cd38178ca2e7dbaf891fde6" style="min-width: 4px; min-height: 4px; width: 492px; height: 38px; left: 80px; top: 87px;"><div class="sl-block-content fragment" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 12;" data-shape-stroke-color="#ff0000" data-shape-stroke-width="3" data-fragment-index="0"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 492 38"><defs><clippath id="shape-mask-33-1534280715598"><rect width="492" height="38"></rect></clippath></defs><rect width="492" height="38" clip-path="url(#shape-mask-33-1534280715598)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#ff0000" stroke-width="6"></rect></svg></div></div></section><section data-background-image="bchildress-authentication-authorization/aa91c1fe056279ba74e1f4f8c5b20607.jpg" data-background-opacity="0.2" data-id="d3a7f9e1251699f3b53d6c38242bedd0">
+
+
+
+
+<div class="sl-block" data-block-type="image" style="width: 960px; height: 447px; left: 0px; top: 127px; min-width: 4px; min-height: 4px;" data-block-id="c94b71bb5327fffd99905947f70d3f7e"><div class="sl-block-content" style="z-index: 10;"><img data-natural-width="2032" data-natural-height="946" style="" data-lazy-loaded="" data-src="bchildress-authentication-authorization/21dc82a6dd52f77c89f523dec0a2b116.png"></div></div>
+<div class="sl-block" data-block-type="code" style="width: 330px; height: 238px; left: 622px; top: 218px;" data-block-id="2c4affc9fbe23f6622a96a06256f509f"><div class="sl-block-content notranslate fragment" style="z-index: 11; font-size: 125%;" data-fragment-index="0"><pre class="json"><code style="padding: 20px;">// User Role
+{
+    "name": "userForm",
+    "create": false,
+    "read": true,
+    "update": true,
+    "delete": false
+}</code></pre></div></div>
+<div class="sl-block" data-block-type="line" style="width: auto; height: auto; left: 93px; top: 372px;" data-block-id="7adfce189e115f4ea32b1ce8a37e9721"><div class="sl-block-content fragment" data-line-x1="302" data-line-y1="8" data-line-x2="-287" data-line-y2="186" data-line-color="#ff0000" data-line-start-type="none" data-line-end-type="line-arrow" style="z-index: 12;" data-line-width="5px" data-fragment-index="2"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="589" height="178" viewbox="-287 8 589 178"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="302.5" y1="8.5" x2="-282.5" y2="185.5"></line><line stroke="#ff0000" stroke-width="5" x1="302.5" y1="8.5" x2="-282.5" y2="185.5"></line><path style="fill: rgba(0,0,0,0);" stroke="#ff0000" stroke-width="5" transform="translate(-283,185) rotate(253.185)" d="M 11.25 11.25 L 0 0 L -11.25 11.25"></path></svg></div></div>
+<div class="sl-block" data-block-type="line" style="width: auto; height: auto; left: 211px; top: 254px;" data-block-id="c24518080fda85f59cce8acf3d7dc5e0"><div class="sl-block-content fragment" data-line-x1="287" data-line-y1="-35" data-line-x2="-184" data-line-y2="-125" data-line-color="#ff0000" data-line-start-type="none" data-line-end-type="line-arrow" style="z-index: 13;" data-line-width="5px" data-fragment-index="1"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="471" height="90" viewbox="-184 -125 471 90"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="287.5" y1="-34.5" x2="-179.5" y2="-123.5"></line><line stroke="#ff0000" stroke-width="5" x1="287.5" y1="-34.5" x2="-179.5" y2="-123.5"></line><path style="fill: rgba(0,0,0,0);" stroke="#ff0000" stroke-width="5" transform="translate(-180,-124) rotate(-79.182)" d="M 11.25 11.25 L 0 0 L -11.25 11.25"></path></svg></div></div></section><section data-background-image="bchildress-authentication-authorization/aa91c1fe056279ba74e1f4f8c5b20607.jpg" data-background-opacity="0.2" data-id="a2ffc270aef99d2a0fc0f6228c567290">
+
+
+
+
+<div class="sl-block" data-block-type="code" style="width: 960px; height: 700px; left: 0px; top: 0px;" data-block-id="a8da0b46fda565458e537588ed8a27a3"><div class="sl-block-content notranslate" style="z-index: 13; font-size: 110%;"><pre class="xml"><code style="padding: 20px;">&lt;!-- User Component --&gt;
+
+&lt;form&gt;
+  &lt;div class="form-row"&gt;
+    &lt;div class="form-group col-md-6"&gt;
+      &lt;label for="firstName"&gt;First Name&lt;/label&gt;
+      &lt;input type="text" id="firstName" placeholder="First Name"
+        [disabled]="!auth.create || !auth.update" *ngIf="auth.read"&gt;
+    &lt;/div&gt;
+    &lt;div class="form-group col-md-6"&gt;
+      &lt;label for="lastName"&gt;Last Name&lt;/label&gt;
+      &lt;input type="text" id="lastName" placeholder="Last Name"
+        [disabled]="!auth.create || !auth.update" *ngIf="auth.read"&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label for="address"&gt;Address&lt;/label&gt;
+    &lt;input type="text" id="address" placeholder="1234 Main St"
+      [disabled]="!auth.create || !auth.update" *ngIf="auth.read"&gt;
+  &lt;/div&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label for="address2"&gt;Address 2&lt;/label&gt;
+    &lt;input type="text" id="address2" 
+    placeholder="Apartment, studio, or floor"
+    [disabled]="!auth.create || !auth.update" *ngIf="auth.read"&gt;
+  &lt;/div&gt;
+...
+  &lt;button type="submit" *ngIf="auth.update"&gt;Update&lt;/button&gt;
+&lt;/form&gt;</code></pre></div></div>
+<div class="sl-block" data-block-type="shape" style="width: 470px; height: 44px; left: 90px; top: 153px;" data-block-id="09bb1ac01afda057a4ec44ac9465d5a2"><div class="sl-block-content fragment" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 14;" data-shape-stroke-color="#ff0000" data-shape-stroke-width="3" data-fragment-index="0"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 470 44"><defs><clippath id="shape-mask-34-1534280716427"><rect width="470" height="44"></rect></clippath></defs><rect width="470" height="44" clip-path="url(#shape-mask-34-1534280716427)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#ff0000" stroke-width="6"></rect></svg></div></div>
+
+</section><section data-background-image="bchildress-authentication-authorization/aa91c1fe056279ba74e1f4f8c5b20607.jpg" data-background-opacity="0.2" data-id="7250e274d01b485024d28afb41d9a135">
+
+
+
+
+
+<div class="sl-block" data-block-type="shape" style="width: 198px; height: 44px; left: 560px; top: 153px;" data-block-id="5454a7298b379469a1895d4ae40b0c79"><div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 11;" data-shape-stroke-color="#ff0000" data-shape-stroke-width="3"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 198 44"><defs><clippath id="shape-mask-35-1534280716839"><rect width="198" height="44"></rect></clippath></defs><rect width="198" height="44" clip-path="url(#shape-mask-35-1534280716839)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#ff0000" stroke-width="6"></rect></svg></div></div>
+<div class="sl-block" data-block-type="code" style="width: 960px; height: 700px; left: 0px; top: 0px;" data-block-id="fa7bace844c25b4b269f19eb420f763c"><div class="sl-block-content notranslate" style="z-index: 10; font-size: 110%;"><pre class="xml"><code style="padding: 20px;">&lt;!-- User Component --&gt;
+
+&lt;form&gt;
+  &lt;div class="form-row"&gt;
+    &lt;div class="form-group col-md-6"&gt;
+      &lt;label for="firstName"&gt;First Name&lt;/label&gt;
+      &lt;input type="text" id="firstName" placeholder="First Name"
+        [disabled]="!auth.create || !auth.update" *ngIf="auth.read"&gt;
+    &lt;/div&gt;
+    &lt;div class="form-group col-md-6"&gt;
+      &lt;label for="lastName"&gt;Last Name&lt;/label&gt;
+      &lt;input type="text" id="lastName" placeholder="Last Name"
+        [disabled]="!auth.create || !auth.update" *ngIf="auth.read"&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label for="address"&gt;Address&lt;/label&gt;
+    &lt;input type="text" id="address" placeholder="1234 Main St"
+      [disabled]="!auth.create || !auth.update" *ngIf="auth.read"&gt;
+  &lt;/div&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label for="address2"&gt;Address 2&lt;/label&gt;
+    &lt;input type="text" id="address2" 
+    placeholder="Apartment, studio, or floor"
+    [disabled]="!auth.create || !auth.update" *ngIf="auth.read"&gt;
+  &lt;/div&gt;
+...
+  &lt;button type="submit" *ngIf="auth.update"&gt;Update&lt;/button&gt;
+&lt;/form&gt;</code></pre></div></div></section><section data-background-image="bchildress-authentication-authorization/aa91c1fe056279ba74e1f4f8c5b20607.jpg" data-background-opacity="0.2" data-id="56488ca520827cceaf951bde4e7a70e9">
+
+
+
+
+
+<div class="sl-block" data-block-type="shape" style="width: 229px; height: 44px; left: 267px; top: 575px;" data-block-id="06459664f09cf95c8135a475f175b224"><div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 11;" data-shape-stroke-color="#ff0000" data-shape-stroke-width="3"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 229 44"><defs><clippath id="shape-mask-36-1534280717274"><rect width="229" height="44"></rect></clippath></defs><rect width="229" height="44" clip-path="url(#shape-mask-36-1534280717274)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#ff0000" stroke-width="6"></rect></svg></div></div>
+<div class="sl-block" data-block-type="code" style="width: 960px; height: 700px; left: 0px; top: 0px;" data-block-id="27f5fcd8528ad0cf8488ef1bebb2dff8"><div class="sl-block-content notranslate" style="z-index: 10; font-size: 110%;"><pre class="xml"><code style="padding: 20px;">&lt;!-- User Component --&gt;
+
+&lt;form&gt;
+  &lt;div class="form-row"&gt;
+    &lt;div class="form-group col-md-6"&gt;
+      &lt;label for="firstName"&gt;First Name&lt;/label&gt;
+      &lt;input type="text" id="firstName" placeholder="First Name"
+        [disabled]="!auth.create || !auth.update" *ngIf="auth.read"&gt;
+    &lt;/div&gt;
+    &lt;div class="form-group col-md-6"&gt;
+      &lt;label for="lastName"&gt;Last Name&lt;/label&gt;
+      &lt;input type="text" id="lastName" placeholder="Last Name"
+        [disabled]="!auth.create || !auth.update" *ngIf="auth.read"&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label for="address"&gt;Address&lt;/label&gt;
+    &lt;input type="text" id="address" placeholder="1234 Main St"
+      [disabled]="!auth.create || !auth.update" *ngIf="auth.read"&gt;
+  &lt;/div&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label for="address2"&gt;Address 2&lt;/label&gt;
+    &lt;input type="text" id="address2" 
+    placeholder="Apartment, studio, or floor"
+    [disabled]="!auth.create || !auth.update" *ngIf="auth.read"&gt;
+  &lt;/div&gt;
+...
+  &lt;button type="submit" *ngIf="auth.update"&gt;Update&lt;/button&gt;
+&lt;/form&gt;</code></pre></div></div></section><section data-background-image="bchildress-authentication-authorization/aa91c1fe056279ba74e1f4f8c5b20607.jpg" data-background-opacity="0.2" data-id="4d879f17d82934fe18413421a98b21ca">
+
+
+
+<div class="sl-block" data-block-type="image" style="width: 960px; height: 470px; left: 0px; top: 115px; min-width: 4px; min-height: 4px;" data-block-id="73a750af3f1b6399654feea154a15a22"><div class="sl-block-content" style="z-index: 10;"><img data-natural-width="2038" data-natural-height="998" style="" data-lazy-loaded="" data-src="bchildress-authentication-authorization/69f26f411cffe0c2f086b46c75c1dd95.png"></div></div>
+<div class="sl-block" data-block-type="code" style="width: 330px; height: 238px; left: 623px; top: 222px;" data-block-id="c5d7ecd129cf8423f58c0f75c713a6fc"><div class="sl-block-content notranslate" style="z-index: 11; font-size: 125%;"><pre class="json"><code style="padding: 20px;">// Admin Role
+{
+    "name": "userForm",
+    "create": true,
+    "read": true,
+    "update": true,
+    "delete": true
+}</code></pre></div></div>
+<div class="sl-block" data-block-type="line" style="width: auto; height: auto; left: 388px; top: 170px;" data-block-id="0caeac444c7bb3b6888de379de8a4a36"><div class="sl-block-content" data-line-x1="301" data-line-y1="95" data-line-x2="6" data-line-y2="-63" data-line-color="#ff0000" data-line-start-type="none" data-line-end-type="line-arrow" style="z-index: 12;" data-line-width="5px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="295" height="158" viewbox="6 -63 295 158"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="301.5" y1="95.5" x2="9.5" y2="-60.5"></line><line stroke="#ff0000" stroke-width="5" x1="301.5" y1="95.5" x2="9.5" y2="-60.5"></line><path style="fill: rgba(0,0,0,0);" stroke="#ff0000" stroke-width="5" transform="translate(9,-61) rotate(-61.827)" d="M 11.25 11.25 L 0 0 L -11.25 11.25"></path></svg></div></div></section><section data-id="fcb53617e3b381491d5ae537cfe4dc44" data-background-image="bchildress-authentication-authorization/aa91c1fe056279ba74e1f4f8c5b20607.jpg" data-background-opacity="0.2">
+
+
+
+<div class="sl-block" data-block-type="image" data-block-id="085a02d8cbfac68f39e675aae45e4a09" style="min-width: 4px; min-height: 4px; width: 960px; height: 470px; left: 0px; top: 115px;"><div class="sl-block-content" style="z-index: 10;"><img data-natural-width="2038" data-natural-height="998" style="" data-lazy-loaded="" data-src="bchildress-authentication-authorization/69f26f411cffe0c2f086b46c75c1dd95.png"></div></div>
+
+<div class="sl-block" data-block-type="line" style="width: auto; height: auto; min-width: 1px; min-height: 1px; left: 454px; top: 160px;" data-block-id="f44c66829fbc5881dbbdf159b545ba0a"><div class="sl-block-content" data-line-x1="307" data-line-y1="100" data-line-x2="74" data-line-y2="-138" data-line-color="#ff0000" data-line-start-type="none" data-line-end-type="line-arrow" style="z-index: 13;" data-line-width="5px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="233" height="238" viewbox="74 -138 233 238"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="307.5" y1="100.5" x2="77.5" y2="-134.5"></line><line stroke="#ff0000" stroke-width="5" x1="307.5" y1="100.5" x2="77.5" y2="-134.5"></line><path style="fill: rgba(0,0,0,0);" stroke="#ff0000" stroke-width="5" transform="translate(77,-135) rotate(-44.392)" d="M 11.25 11.25 L 0 0 L -11.25 11.25"></path></svg></div></div>
+<div class="sl-block" data-block-type="code" style="width: 330px; height: 238px; left: 623px; top: 222px;" data-block-id="57528dbbc6f2d0ebf345931f2f285334"><div class="sl-block-content notranslate" style="z-index: 12; font-size: 125%;"><pre class="json"><code style="padding: 20px;">// Admin Role
+{
+    "name": "userForm",
+    "create": true,
+    "read": true,
+    "update": true,
+    "delete": true
+}</code></pre></div></div></section><section data-background-image="bchildress-authentication-authorization/aa91c1fe056279ba74e1f4f8c5b20607.jpg" data-background-opacity="0.2" data-id="990a2112b679118706f2ac3fbb33004e">
+
+
+
+<div class="sl-block" data-block-type="image" data-block-id="971a569ac1fe4323c4d86920953a2c34" style="min-width: 4px; min-height: 4px; width: 960px; height: 407px; left: 0px; top: 147px;"><div class="sl-block-content" style="z-index: 10;"><img data-natural-width="2036" data-natural-height="864" style="" data-lazy-loaded="" data-src="bchildress-authentication-authorization/4764e60a588df250365ff5a8669d9ff6.png"></div></div>
+<div class="sl-block" data-block-type="code" style="width: 330px; height: 240px; left: 623px; top: 245px;" data-block-id="f01a761a2b9f3e665cbfac4ae2803ca9"><div class="sl-block-content notranslate" style="z-index: 12; font-size: 125%;"><pre class="json"><code style="padding: 20px;">// Auditor Role
+{
+    "name": "userForm",
+    "create": false,
+    "read": true,
+    "update": false,
+    "delete": false
+}</code></pre></div></div></section><section data-background-image="bchildress-authentication-authorization/aa91c1fe056279ba74e1f4f8c5b20607.jpg" data-background-opacity="0.2" data-id="1e0bbc6619ea6dedbb8c2778642d7e75">
+
+
+
+
+<div class="sl-block" data-block-type="code" style="width: 960px; height: 700px; left: 0px; top: 0px;" data-block-id="d9fb2b41d2e9244a83818e8899979653"><div class="sl-block-content notranslate" style="z-index: 10; font-size: 125%;"><pre class="typescript"><code style="padding: 20px;">// API Response
+const routeAuth = [..{
+                      "name": "userForm",
+                      "create": true,
+                      "read": true,
+                      "update": true,
+                      "delete": true
+}];
+
+@Component({
+  selector: 'user-form',
+  templateUrl: './user-form.component.html'
+})
+
+export class UserFormComponent {
+... 
+    getData(authorization: Object){
+
+        if(authorization.read){
+
+            this.http.get('users').subscribe(response =&gt; {
+                // do something
+            });
+
+        }
+    }
+}</code></pre></div></div>
+<div class="sl-block" data-block-type="shape" style="width: 308px; height: 44px; left: 107px; top: 446px;" data-block-id="a4ca16a76939adf6d1d88987d7e77421"><div class="sl-block-content fragment" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 11;" data-shape-stroke-color="#ff0000" data-shape-stroke-width="3" data-fragment-index="1"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 308 44"><defs><clippath id="shape-mask-37-1534280718609"><rect width="308" height="44"></rect></clippath></defs><rect width="308" height="44" clip-path="url(#shape-mask-37-1534280718609)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#ff0000" stroke-width="6"></rect></svg></div></div>
+<div class="sl-block" data-block-type="shape" style="width: 259px; height: 44px; left: 276px; top: 58px;" data-block-id="2229d303c9d1bff92ccdc0760f7bfd8d"><div class="sl-block-content fragment" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 13;" data-shape-stroke-color="#ff0000" data-shape-stroke-width="3" data-fragment-index="0"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 259 44"><defs><clippath id="shape-mask-38-1534280718611"><rect width="259" height="44"></rect></clippath></defs><rect width="259" height="44" clip-path="url(#shape-mask-38-1534280718611)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#ff0000" stroke-width="6"></rect></svg></div></div></section><section data-background-image="bchildress-authentication-authorization/aa91c1fe056279ba74e1f4f8c5b20607.jpg" data-background-opacity="0.2" data-id="d935e14dbba81678d1435cb17b2db7f4">
+
+
+
+
+<div class="sl-block" data-block-type="text" data-block-id="ddb6ccd38d0ca6b6f38382ed128c3c0e" style="height: auto; min-width: 30px; min-height: 30px; width: 288px; left: 647px; top: 70px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; border-style: solid; border-width: 3px; padding: 45px;">
+<p>User Component 1</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 288px; left: 647px; top: 495px;" data-block-id="117357fd6b56b47dbfaf23b1f310014d"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12; border-style: solid; border-width: 3px; padding: 45px;">
+<p>User Component 2</p>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="7d06277fddb35efe45da6c8cd6769be1" style="height: auto; min-width: 30px; min-height: 30px; width: 295px; left: 228px; top: 315px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13; font-size: 151%;">
+<p><strong>canEditUsers</strong></p>
+</div></div>
+<div class="sl-block" data-block-type="line" data-block-id="3e5b9c3ba13c50d64c9834d675ee69dc" style="width: auto; height: auto; min-width: 1px; min-height: 1px; left: 21px; top: 349px;"><div class="sl-block-content" data-line-x1="-348" data-line-y1="50" data-line-x2="-165" data-line-y2="50" data-line-color="#000000" data-line-start-type="none" data-line-end-type="line-arrow" style="z-index: 14;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="183" height="1" viewbox="-348 50 183 1"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="-348" y1="50" x2="-167" y2="50"></line><line stroke="#000000" stroke-width="2" x1="-348" y1="50" x2="-167" y2="50"></line><path style="fill: rgba(0,0,0,0);" stroke="#000000" stroke-width="2" transform="translate(-167,50) rotate(90)" d="M 6 6 L 0 0 L -6 6"></path></svg></div></div>
+<div class="sl-block" data-block-type="line" style="width: auto; height: auto; min-width: 1px; min-height: 1px; left: 523px; top: 140px;" data-block-id="e25ae5d206098ffff7ce6679a18827f9"><div class="sl-block-content" data-line-x1="-316" data-line-y1="110" data-line-x2="-199" data-line-y2="-65" data-line-color="#000000" data-line-start-type="none" data-line-end-type="line-arrow" style="z-index: 15;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="117" height="175" viewbox="-316 -65 117 175"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="-316" y1="110" x2="-200" y2="-63"></line><line stroke="#000000" stroke-width="2" x1="-316" y1="110" x2="-200" y2="-63"></line><path style="fill: rgba(0,0,0,0);" stroke="#000000" stroke-width="2" transform="translate(-200,-63) rotate(33.766)" d="M 6 6 L 0 0 L -6 6"></path></svg></div></div>
+<div class="sl-block" data-block-type="line" style="width: auto; height: auto; min-width: 1px; min-height: 1px; left: 523px; top: 387px;" data-block-id="d329cd65160304592a57d91c7101bc4a"><div class="sl-block-content" data-line-x1="-316" data-line-y1="87" data-line-x2="-199" data-line-y2="260" data-line-color="#000000" data-line-start-type="none" data-line-end-type="line-arrow" style="z-index: 16;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="117" height="173" viewbox="-316 87 117 173"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="-316" y1="87" x2="-200" y2="258"></line><line stroke="#000000" stroke-width="2" x1="-316" y1="87" x2="-200" y2="258"></line><path style="fill: rgba(0,0,0,0);" stroke="#000000" stroke-width="2" transform="translate(-200,258) rotate(145.929)" d="M 6 6 L 0 0 L -6 6"></path></svg></div></div>
+<div class="sl-block" data-block-type="text" data-block-id="766f23b9be2cecd89a3656a99f047206" style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: -15px; top: 70px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 17;">
+<p><strong>Claim Based Authorization</strong></p>
+</div></div></section><section data-background-image="bchildress-authentication-authorization/aa91c1fe056279ba74e1f4f8c5b20607.jpg" data-background-opacity="0.2" data-id="11fbc850d79f78780891f3c5c7ded67b">
+
+
+
+
+<div class="sl-block" data-block-type="text" data-block-id="81a81063340ccc4174233a0dbaae7be2" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 86px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
+<p><span style="font-size:1.4em">Additional Uses for <strong>CRUD</strong>-based authorization:</span></p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 241px; left: 131px; top: 358px;" data-block-id="341562b4b04517af4c2c19c9f6db4bae"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; font-size: 140%;" data-fragment-index="2">
+<p>Testing</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 456px; left: 160px; top: 174px;" data-block-id="81722f35e9a0ffbc7f127a8ee474520c"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12; font-size: 140%;" data-fragment-index="0">
+<p>System Maintenance</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 391px; left: 137px; top: 264px;" data-block-id="95d215363aaa0dbb488f7683566f1eb4"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14; font-size: 140%;" data-fragment-index="1">
+<p>Feature rollout</p>
+</div></div></section><section data-background-image="bchildress-authentication-authorization/aa91c1fe056279ba74e1f4f8c5b20607.jpg" data-background-opacity="0.2" data-id="621a505de08479b75d09f727c454f631"><div class="sl-block" data-block-type="text" style="width: 960px; left: 0px; top: 273px; height: auto;" data-block-id="6038a4e3d63e89f8bb9a2996cb720998"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 10;">
+<p><span style="font-size:54px"><strong>questions?</strong></span></p>
+</div></div>
+
+
+<div class="sl-block" data-block-type="text" style="width: 387px; left: 545px; top: 495px; height: auto;" data-block-id="1c32a0660091c5c66a85671f261215cb"><div class="sl-block-content fragment" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 11; font-size: 65%;" data-fragment-index="0">
+<h1>brian childress</h1>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 230px; left: 693px; top: 570px; height: auto;" data-block-id="ac28fe980bf892533f8ccb914d6f385d"><div class="sl-block-content fragment" data-placeholder-tag="h2" data-placeholder-text="Subtitle" style="z-index: 12; font-size: 65%;" data-fragment-index="0">
+<h2>Capital One</h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 452px; left: 480px; top: 631px;" data-block-id="a7e136d0b9096d5bed048cc767204a3d"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14;" data-fragment-index="0">
+<p>brian.childress@capitalone.com</p>
+</div></div></section>
+			</div>
+		</div>
+
+		<script>
+			var SLConfig = {"deck": {"id":1294112,"slug":"bchildress-authentication-authorization","title":"Authorization \u0026 Authentication","description":"","width":960,"height":700,"visibility":"self","published_at":"2018-07-26T14:43:09.511Z","sanitize_messages":null,"thumbnail_url":"https://s3.amazonaws.com/media-p.slid.es/thumbnails/843c1f83176b8b0ed1a53ca71f9b16d5/thumb.jpg?1534263187","view_count":2,"user":{"id":906421,"username":"brianjchildress","name":"Brian J Childress","description":null,"thumbnail_url":"https://lh5.googleusercontent.com/--i93VQfFb2Q/AAAAAAAAAAI/AAAAAAAAAAA/AAnnY7olJ-kV8_kGk4MsMF3Kzj8wRGRmsg/mo/photo.jpg","paid":true,"pro":false,"lite":true,"team_id":null,"settings":{"id":1596162,"present_controls":false,"present_upsizing":true,"present_pointer":false,"present_notes":true,"default_deck_tag_id":null}},"background_transition":"fade","transition":"fade","theme_id":null,"theme_font":"montserrat","theme_color":"silver-blue","auto_slide_interval":0,"comments_enabled":true,"forking_enabled":false,"rolling_links":false,"center":false,"shuffle":false,"should_loop":false,"share_notes":false,"slide_number":false,"slide_count":38,"rtl":false,"version":2,"collaborative":null,"deck_user_editor_limit":1,"data_updated_at":1534280815789,"font_typekit":null,"font_google":null,"notes":{"f3d61b9f729d36586ffcb51abad38372":"Local:\nuser submits credentials -\u003e server validates -\u003e returns response\n\nYour app maintains a list of usernames and passwords\nNeeds to handle verification of users, email address, etc.\n","6f64eeea4de495147060eece557491b3":"This does not mean authentication must precede authorization; an anonymous user could be authorized to a limited set of features\n\nauthentication: who am i? \nauthorization: what can i do?","9c65f10ba9357411743f2d618e1d6c61":"JWTs are self-contained and lightweight making them easy to store and pass. They solve many problems, we will use them to authenticate requests\n\nOften stored in client side storage (LocalStorage) for easy sharing and retrieval\n\nAuthentication information, expire time information, and other user defined claims cryptographically signed\n","43252adaadcb7dec2e289b37f44ce10d":"Type: JWT\nAlgorithm: HS256","14a172272b6cf0c23ab29be0a1e110bc":"Individual parameters are called 'claims'\n\nThe data inside a JWT is encoded and signed, not encrypted.","92ef7f639de60ba4f0cbf4c1069c7546":"Considerations:\n\nLength of session, when does the token expire?\n\nInformation to pass\n\n","3fe87ce7ebe3c68778bbd72666b34d7b":"Role based authorization for a route\n\n\nprivate getRouteAuth(...roles) {\n    \n    const arrayUserRoles = this.parseJwt().roles;\n    \n    if(arrayRoles) {\n        return arrayUserRoles.some((role) =\u003e {\n            return roles.indexOf(role) \u003e= 0;\n        });\n    }\n\n}\n\nprivate parseJwt () {\n\n    const token = localStorage.getItem('jwt');\n\n    try {\n      return JSON.parse(atob(token.split('.')[1]));\n    } catch (e) {\n      return null;\n    }\n\n}","329521824034ae78e5026ba6f95e49f6":"Route Name Using CRUD","0fc9c401f83fbd050e3aecdaf0bc8262":"","3aa683110642d263710950db72157a8c":"","39075dcf7e79821b957cc9304b9ac7a7":"Role base authorization using conditionals","28e76e3bbc07a1b939f20da132adb62e":"","5d872c41f6c2a92fbbeebca692b3889b":"Global Finance, internal apps used by teams to gather, analyze and report on financial data across C1\n\nPast 10+ years developing apps with sensitive data, healthcare, financial\n\nFront-End focused","e7d6e454d5ea031a9c9e1df38eb6657b":"Teams intermix terms, creates confusion","fee000151b917ebffa92086dc9a2c315":"3rd Party:\nOAuth (Open Authorization) - Facebook, Github, Ping Identity. OAuth is for Delegation, Consent, and Authorization\n\nAllows to user information from 3rd party without passing credentials\n\nOpenID Connect is for authentication using a 3rd party, based on OAuth\n\n\n3rd Party is a delegated authority, a user consents to allow a third-party access to information that the delegate manages. The user authenticates with that 3rd party then provides consent\n\nDelegated access is the act of one entity (a person or system) granting access to a resource that they own (or control), to another person or entity that has a need for access. (https://medium.com/@robert.broeckelmann/an-alternative-to-delegated-access-in-the-enterprise-82023ed423b5)","96e8eecc489017ca593677a2210860a9":"Multiple clients\nMultiple backend services\nStateless\nDecoupled\nStored in LocalStorage (shareable across browsers)\nAuthorization: \u003ctype\u003e \u003ccredentials\u003e","60243ca14b7d14c30979e5435c5e2a9a":"Each key: value pair is called a claim\n\nBase64UrlEncoded","5c6bc98c4bc11756aec5e2f547413f68":"Claim key is short\nWe'll come back to payload\n","3fb6495ace8c0e293b661aa48fdf2b72":"Secret is important to protect\nRotate secret often!","829d5ba888f15cd2e9614ddc57e7e83d":"Expiration: Type of Application, Bank = short-lived, Social Media = long-lived\n\nNon-sensitive data either about the user or your applications security model\n\nClaim-based authorization","7a61d809f4d731eb09c63411ed4e28bd":"","0c8eade7a0258900431a73e8518e6c0a":"Now Authenticated how do we authorize?\n","20a8d6720ba7f18d625ff86ab4fc97c1":"Users Full Name from JWT\n\nAuthenticated, logout button shown","1c162cce0babaa60e51bd53beed746d9":"","fcb53617e3b381491d5ae537cfe4dc44":"","5487da2dd9e67ed3991f70e9209bd1a7":"Conditional based authorization based on boolean from JWT","3268905d3c76fa51be2eb62b8512f9f9":"","ac1ec3fab5c994f56ebf441076bc1f86":"Route guard, based on some condition return true","e28927c94e7545ad2c14c53d95cd6de5":"Example API Response","990a2112b679118706f2ac3fbb33004e":"Auditor role, how CRUD is defined is up to you as the developer.\nSecurity groups\nRoles\nFunctionality","5cc3ab8e4b202c9f70a676aca8e1c16d":"","bd67441c721c4d934584f2a81f381d27":"We've looked at Role-base auth at the form level","4d879f17d82934fe18413421a98b21ca":"","d6a53b0d50821fe350b124a78e3ffc84":"","1e0bbc6619ea6dedbb8c2778642d7e75":"","847c4c79c1cb496ca2b4cc8485c6b674":"","2d290d3196c6a26223149226f38f7e04":"","d935e14dbba81678d1435cb17b2db7f4":"Permissions can be shared across different components based on functionality ","7250e274d01b485024d28afb41d9a135":"","56488ca520827cceaf951bde4e7a70e9":"Mar","b9c673673327a134b29904bc0b8174cf":"Role-based authorization\n\nWhat happens when app expands?","5164b8d5bf875fd24e0458304763d99f":"","e4ff9463d3a5dd54a55a5c789012e654":"","39f7a8fa472751fd36e18e94284abd05":"","1c01db00c8e8b9b1a4c374049420ca7f":"Users route\nAPI Response\nRead permissions","cc86b2bb798b9ceeeb617f15a1a518dd":"Similar to SAML (XML), JWT(JSON) are less verbose, reducing network traffic\n\nLight weight, great for mobile","89408982fa7b921583ba069a84c0877b":"","1fa3ab2fc3f4007af84b901c245e25d2":"Who is familiar with CRUD?","e48c5aaa64ec730f1d639599ce8f0ca0":"Because this is a JSON object we can pass complex objects, just beware of the weight that it can add to each request\n\nRole-based authorization\n\nlocalStorage: { is_admin: true } \u003c- security risk","5c0824490f3a1b24e0fea8b447abcfa7":"Cross section of groups\n\nReduces additional queries to determine authorization for user","40027904ca0b64f503780d42a9dd61a4":"","b9f7bf6ee61bcf13864b30093b85f7da":"","a2ffc270aef99d2a0fc0f6228c567290":"Markup example\nDisabling individual data point based on CRUD","d3a7f9e1251699f3b53d6c38242bedd0":"","621a505de08479b75d09f727c454f631":"Authentication vs. Authorization\nWays to use JWT effectively\nWays to Authorize user\nUpdate the UX based on Auth","8da371bd12bcf7a4e4a85bb90ae5ab00":"","6db4f28c8dafd4c7dd97b40a18cdae75":"","11fbc850d79f78780891f3c5c7ded67b":"- Maintenance windows\n      - Read-only information still available\n      - Disabling features\n- Beta-testing\n- Free vs. Paid, level of access in application\n- Security group\n      - Admin\n      - Auditor\n      - Application specific groups (SASS user defined)\n\n- Whitelabled solutions offering various features to groups\n- Feature rollout to subset of users, ‘feature-flagging’\n\n- A/B testing\n"}}};
+
+
+			// Use local fonts
+			SLConfig.fonts_url = 'lib/fonts/';
+		</script>
+
+		<script src="lib/head.min.js"></script>
+		<script src="lib/reveal.min.js"></script>
+		<script src="lib/offline.js"></script>
+
+		<!-- Initialize the presentation -->
+		<script>
+			Reveal.initialize({
+				width: 960,
+				height: 700,
+				margin: 0.05,
+
+				controls: true,
+				progress: true,
+				history: true,
+				mouseWheel: false,
+				showNotes: false,
+				slideNumber: false,
+
+				autoSlide: 0 || 0,
+				autoSlideStoppable: true,
+
+				center: false,
+				shuffle: false,
+				loop: false,
+				rtl: false,
+
+				transition: "fade",
+				backgroundTransition: "fade",
+
+				dependencies: [
+					{ src: 'lib/reveal-plugins/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'lib/reveal-plugins/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'lib/reveal-plugins/highlight/highlight.js', async: true, callback: function() { hljs.initHighlighting(); hljs.initHighlightingOnLoad(); } },
+					{ src: 'lib/reveal-plugins/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'lib/reveal-plugins/zoom/zoom.js', async: true }
+				]
+			});
+		</script>
+
+		
+
+	</body>
+</html>
